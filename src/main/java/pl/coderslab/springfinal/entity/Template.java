@@ -7,6 +7,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,18 +24,30 @@ public class Template {
     @NotNull
     private String name;
 
+    @Column(columnDefinition = "DATETIME")
+    private String createdAt;
+    @Column(columnDefinition = "DATETIME")
+    private String updatedAt;
+
     @Column(columnDefinition = "TEXT")
-    private String templateText;
+    private String content;
 
     @ManyToOne
     User user;
+
+    @ManyToMany(mappedBy = "templates")
+    List<Publication> publications = new ArrayList<>();
+
+
 
     @Override
     public String toString() {
         return "Template{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", templateText='" + templateText + '\'' +
+//                ", createdAt='" + createdAt + '\'' +
+//                ", updatedAt='" + updatedAt + '\'' +
+                ", templateText='" + content + '\'' +
                 '}';
     }
 }
