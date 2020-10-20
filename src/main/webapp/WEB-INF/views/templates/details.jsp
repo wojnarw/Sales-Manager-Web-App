@@ -24,7 +24,7 @@
     </c:if>
     <h3>Template details</h3>
     <div>Name: ${template.name}</div>
-    <div>Created by: ${template.user}</div>
+    <div>Created by: ${template.user.username}</div>
     <div>Created: ${template.createdAt}</div>
     <div>Updated:${template.updatedAt}</div>
     <div>Content: ${template.content}</div>
