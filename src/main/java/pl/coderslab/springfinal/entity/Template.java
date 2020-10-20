@@ -35,8 +35,8 @@ public class Template {
     @ManyToOne
     User user;
 
-    @ManyToMany(mappedBy = "templates")
-    List<Publication> publications = new ArrayList<>();
+//    @ManyToMany(mappedBy = "templates")
+//    List<Publication> publications = new ArrayList<>();
 
 
 

@@ -32,7 +32,9 @@
     </style>
 </head>
 <body>
-
+<h3><a href="<c:url value="/template/add"/>">Add</a></h3>
+<h3><a href="<c:url value="/fixtures"/>">Fixtures</a></h3>
+<c:if test="${not empty param.del}"><h3>${param.del} removed successfully</h3></c:if>
     <table>
         <thead>
             <tr>
@@ -43,7 +45,13 @@
                     Template name
                 </th>
                 <th>
+                    Description
+                </th>
+                <th>
                     Last updated
+                </th>
+                <th>
+
                 </th>
             </tr>
         </thead>
@@ -55,10 +63,17 @@
                     ${i}
                 </td>
                 <td>
-                    ${template.name}
+                    <a href="<c:url value="/template/${template.id}" />">${template.name}</a>
                 </td>
                 <td>
-<%--                    ${template.updatedAt}--%>
+<%--                    ${template.description}--%>
+                </td>
+                <td>
+                    ${template.updatedAt}
+                </td>
+                <td>
+                    <a href="<c:url value="/template/edit/${template.id}" />">Edit</a>
+                    <a href="<c:url value="/template/delete/${template.id}" />">Delete</a>
                 </td>
             </tr>
         <c:set var="i" value="${i + 1}" />

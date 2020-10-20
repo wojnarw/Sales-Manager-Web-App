@@ -20,20 +20,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min = 3, max = 255)
+//    @Size(min = 3, max = 255)
     @NotNull
     private String username;
     private String password;
 
-    @Size(min = 5, max = 255)
-    @NotNull
-    @Email
+//    @Size(min = 5, max = 255)
+//    @NotNull
+//    @Email
     private String email;
 
     @OneToMany(mappedBy = "user")
     List<Template> templates = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
-//    List<ScrappedItem> scrappedItems = new ArrayList<>();
+//    @OneToMany(mappedBy = "user")
+//    List<Publication> publications = new ArrayList<>();
 
     @Override
     public String toString() {

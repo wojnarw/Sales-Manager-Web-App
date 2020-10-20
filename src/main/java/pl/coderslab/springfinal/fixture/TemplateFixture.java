@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 import pl.coderslab.springfinal.entity.Template;
 import pl.coderslab.springfinal.service.TemplateService;
 
+import java.util.Date;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class TemplateFixture {
@@ -25,6 +27,16 @@ public class TemplateFixture {
             Template template = new Template();
             template.setName(faker.commerce().productName());
             template.setContent(faker.lorem().fixedString(1000));
+//            String fakeDateTime = faker.date().past(1, TimeUnit.DAYS).toString();
+            int year = random.nextInt(5) + 2015;
+            int month = random.nextInt(12) + 1;
+            int day = random.nextInt(31) + 1;
+            int hour = random.nextInt(23);
+            int minute = random.nextInt(60);
+            int second = random.nextInt(60);
+            String fakeDateTime = String.format("%d-%d-%d %d:%d:%d", year,month,day,hour,minute,second);
+            template.setCreatedAt(fakeDateTime);
+            template.setUpdatedAt(fakeDateTime);
             templateService.save(template);
         }
     }

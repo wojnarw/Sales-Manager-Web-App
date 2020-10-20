@@ -7,10 +7,9 @@ import pl.coderslab.springfinal.entity.Template;
 
 import java.util.List;
 
-@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findUserById(Long id);
-    List<User> findAllByTemplateName(String name);
+//    User findUserById(Long id);
+//    List<User> findAllByTemplateName(String name);
 
 }

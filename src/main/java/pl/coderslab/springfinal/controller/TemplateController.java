@@ -64,4 +64,25 @@ public class TemplateController {
         model.addAttribute("template", template);
         return "templates/form";
     }
+
+    @GetMapping("/{id}")
+    public String templateDetails(@PathVariable long id, Model model){
+        Template template = templateService.findOneByIdWithAllData(id);
+        model.addAttribute("template", template);
+        return "templates/details";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteTemplateConfirm(@PathVariable long id, Model model){
+        Template template = templateService.findOneByIdWithAllData(id);
+        model.addAttribute("template", template);
+        model.addAttribute("delete", true);
+        return "templates/details";
+    }
+    @PostMapping("/delete/{id}")
+    public String deleteTemplate(@PathVariable long id, Model model) {
+        Template template = templateService.findOneById(id);
+        templateService.delete(template);
+        return "redirect:/template?del=" + template.getName();
+    }
 }

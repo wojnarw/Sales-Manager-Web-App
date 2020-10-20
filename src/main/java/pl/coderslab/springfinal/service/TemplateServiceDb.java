@@ -62,7 +62,7 @@ public class TemplateServiceDb implements TemplateService {
 
     @Override
     public Template findOneByIdWithAllData(Long id) {
-        return null;
+        return templateRepository.findOneByIdWithAllData(id);
     }
 
     @Override

@@ -7,24 +7,35 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Template creator</title>
+
 </head>
 <body>
+    <h3><a href="<c:url value="/template"/>">Back to list</a></h3>
     <h2>Template ${template.id == null ? "add" : "edit"} form</h2>
     <form:form method="post" action="${pageContext.request.contextPath}/template/save" modelAttribute="template">
         <form:hidden path="id" />
-<%--        <form:label path="name">--%>
-            Template name:
-<%--        </form:label>--%>
+        <form:hidden path="updatedAt" />
+        <form:label path="name">Template name: </form:label>
         <form:input path="name" />
         <form:errors path="name"/>
-
         <form:textarea path="content"  />
         <form:errors path="content" />
 
         <button type="submit">Save</button>
     </form:form>
+
+    <script type="text/javascript">
+        console.log("script loaded");
+        window.addEventListener("DOMContentLoaded", function () {
+            console.log("event fired");
+            let currentTime = new Date().toISOString().slice(0, 19).replace('T', ' ');;
+            document.getElementById("updatedAt").value = currentTime;
+        });
+
+    </script>
 </body>
 </html>
