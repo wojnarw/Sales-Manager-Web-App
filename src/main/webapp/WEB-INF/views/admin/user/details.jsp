@@ -28,7 +28,7 @@
     <div>Username: ${user.username}</div>
     <div>E-mail: ${user.email}</div>
     <div>Registered on: ${user.registeredOn}</div>
-    <div>Role: ${user.role}</div>
+    <div >Role: <span class="${user.role}">${user.role}</span></div>
     <div>Templates created: ${numOfTemplates}</div>
     <div>
         Templates:
