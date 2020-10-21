@@ -17,11 +17,8 @@
     <table class="entityList">
         <thead>
         <tr>
-            <td colspan="4">
-                Last registered users
-            </td>
-            <td>
-                <a href="<c:url value="/admin/users" />">Show all</a>
+            <td colspan="5">
+                User list
             </td>
         </tr>
         <tr>
