@@ -23,16 +23,16 @@
         </tr>
         <tr>
             <th>
-                ID
+                <a href="<c:url value="/admin/users?sort=idAsc" />">ID</a>
             </th>
             <th>
-                Username
+                <a href="<c:url value="/admin/users?sort=usernameAsc" />">Username</a>
             </th>
             <th>
-                E-mail
+                <a href="<c:url value="/admin/users?sort=emailAsc" />">E-mail</a>
             </th>
             <th>
-                Registered on
+                <a href="<c:url value="/admin/users?sort=dateAsc" />">Registered on</a>
             </th>
             <th>
 

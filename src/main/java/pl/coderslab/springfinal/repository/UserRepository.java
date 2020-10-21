@@ -23,4 +23,22 @@ public interface UserRepository extends JpaRepository<User, Long> {
             nativeQuery = true)
     Set<User> getLastFive();
 
+//    Set<User> findByOrderByUsernameAsc();
+//
+//    @Query("select u from User u order by u.id asc")
+//    Set<User> getAllSortByIdAsc();
+//    @Query("select u from User u order by u.id desc")
+//    Set<User> getAllSortByIdDesc();
+//    @Query("select u from User u order by u.username asc")
+//    Set<User> getAllSortByUsernameAsc();
+//    @Query("select u from User u order by u.username desc")
+//    Set<User> getAllSortByUsernameDesc();
+//    @Query("select u from User u order by u.email asc")
+//    Set<User> getAllSortByEmailAsc();
+//    @Query("select u from User u order by u.email desc")
+//    Set<User> getAllSortByEmailDesc();
+//    @Query("select u from User u order by u.registeredOn asc")
+//    Set<User> getAllSortByRegisteredOnAsc();
+//    @Query("select u from User u order by u.registeredOn desc")
+//    Set<User> getAllSortByRegisteredOnDesc();
 }

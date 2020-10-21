@@ -3,15 +3,13 @@ package pl.coderslab.springfinal.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springfinal.entity.Publication;
 import pl.coderslab.springfinal.entity.User;
 import pl.coderslab.springfinal.service.TemplateService;
 import pl.coderslab.springfinal.service.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -36,8 +34,9 @@ public class AdminController {
     }
 
     @GetMapping("/users")
-    public String userList(Model model) {
-        List<User> users = this.userService.getAll();
+    public String userList(@RequestParam(required=false, defaultValue = "") String sort, Model model) {
+        if(sort.isEmpty()) sort = "idDesc";
+        List<User> users = this.userService.getAll(sort);
         model.addAttribute("users", users);
         return "admin/user/list";
     }

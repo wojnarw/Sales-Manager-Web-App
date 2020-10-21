@@ -1,6 +1,7 @@
 package pl.coderslab.springfinal.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import pl.coderslab.springfinal.entity.User;
@@ -66,7 +67,35 @@ public class UserServiceDb implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
-        return this.userRepository.findAll();
+    public List<User> getAll(String sortType) {
+        List<User> users;
+        switch (sortType) {
+            case "idAsc":
+                users = this.userRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+                break;
+            case "idDesc":
+                users = this.userRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+                break;
+            case "usernameAsc":
+                users = this.userRepository.findAll(Sort.by(Sort.Direction.ASC, "username"));
+                break;
+            case "usernameDesc":
+                users = this.userRepository.findAll(Sort.by(Sort.Direction.DESC, "username"));
+                break;
+            case "emailAsc":
+                users = this.userRepository.findAll(Sort.by(Sort.Direction.ASC, "email"));
+                break;
+            case "emailDesc":
+                users = this.userRepository.findAll(Sort.by(Sort.Direction.DESC, "email"));
+                break;
+            case "dateAsc":
+                users = this.userRepository.findAll(Sort.by(Sort.Direction.ASC, "registeredOn"));
+                break;
+            case "dateDesc":
+                users = this.userRepository.findAll(Sort.by(Sort.Direction.DESC, "registeredOn"));
+                break;
+            default: users = this.userRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        }
+        return users;
     }
 }

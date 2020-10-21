@@ -15,5 +15,5 @@ public interface UserService {
     long count();
     Set<User> findAllWithAllData();
     Set<User> getLastFive();
-    List<User> getAll();
+    List<User> getAll(String sortType);
 }
