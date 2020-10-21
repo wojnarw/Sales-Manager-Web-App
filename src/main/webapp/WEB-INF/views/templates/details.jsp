@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>Template details</title>
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
     <h3><a href="<c:url value="/template"/>">Back to list</a></h3>

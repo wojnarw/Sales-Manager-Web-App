@@ -8,13 +8,19 @@ import pl.coderslab.springfinal.entity.User;
 import pl.coderslab.springfinal.entity.Template;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
-    @Query("select u from User u left join fetch u.templates t where u.id = :id") //  join fetch u.publications p")
-    User findOneByIdWithAllData(@Param("id") Long id);
-
-//    List<User> findAllByTemplateName(String name);
+    @Query("select u from User u left join fetch u.templates t where u.id = ?1") //  join fetch u.publications p")
+    User findOneByIdWithAllData(Long id);
+    @Query("select u from User u left join fetch u.templates t order by u.id asc") //  join fetch t.publications p")
+    Set<User> findAllWithAllData();
+    @Query("select u from User u order by u.id desc")
+    Set<User> getLast();
+    @Query(value = "SELECT * FROM users ORDER BY users.id DESC LIMIT 5",
+            nativeQuery = true)
+    Set<User> getLastFive();
 
 }

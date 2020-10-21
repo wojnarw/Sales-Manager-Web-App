@@ -23,17 +23,24 @@ public class User {
 //    @Size(min = 3, max = 255)
     @NotNull
     private String username;
+    @NotNull
     private String password;
 
 //    @Size(min = 5, max = 255)
-//    @NotNull
-//    @Email
+    @NotNull
+    @Email
     private String email;
+
+    @Column(columnDefinition = "DATETIME")
+    private String registeredOn;
+
+    @NotNull
+    private String role;
 
     @OneToMany(mappedBy = "user")
     List<Template> templates = new ArrayList<>();
-//    @OneToMany(mappedBy = "user")
-//    List<Publication> publications = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    List<Publication> publications = new ArrayList<>();
 
     @Override
     public String toString() {

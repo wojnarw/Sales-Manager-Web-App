@@ -26,8 +26,8 @@ public class Publication {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-//    @ManyToOne
-//    User user;
+    @ManyToOne
+    User user;
 
 //    @ManyToMany(mappedBy = "publications")
 //    List<Template> templates = new ArrayList<>();

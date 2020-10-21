@@ -64,9 +64,13 @@ public class TemplateServiceDb implements TemplateService {
     public Template findOneByIdWithAllData(Long id) {
         return templateRepository.findOneByIdWithAllData(id);
     }
-
     @Override
     public Set<Template> findAllWithAllData() {
         return templateRepository.findAllWithAllData();
+    }
+
+    @Override
+    public int countAllByUserId(long id) {
+        return this.templateRepository.countAllByUserId(id);
     }
 }

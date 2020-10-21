@@ -12,4 +12,8 @@ public interface UserService {
     public User findOneById(Long id);
     public User findOneByEmail(String email);
     public User findOneByIdWithAllData(Long id);
+    long count();
+    Set<User> findAllWithAllData();
+    Set<User> getLastFive();
+    List<User> getAll();
 }

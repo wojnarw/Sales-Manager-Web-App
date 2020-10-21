@@ -1,0 +1,24 @@
+a, a:visited {
+    color: inherit;
+}
+table.entityList {
+    margin: 50px;
+    padding-bottom: 15px;
+}
+table.entityList th {
+    text-align: center;
+    font-weight: bold;
+    padding: 15px;
+    background: #a55d5d;
+}
+table.entityList td {
+    background: #e2e2d2;
+    padding: 5px;
+}
+.title {
+    font-weight: bold;
+    font-size: large;
+}
+.banned {
+    color: crimson !important;
+}

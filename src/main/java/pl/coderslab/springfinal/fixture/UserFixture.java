@@ -3,14 +3,10 @@ package pl.coderslab.springfinal.fixture;
 import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.coderslab.springfinal.entity.Template;
 import pl.coderslab.springfinal.entity.User;
 import pl.coderslab.springfinal.service.TemplateService;
 import pl.coderslab.springfinal.service.UserService;
 
-import javax.xml.transform.Templates;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 @Component
@@ -39,12 +35,28 @@ public class UserFixture {
                 "outlook.com",
                 "mail.com"
         };
+        int year = 2015;
         for (int i = 0; i < 5; i++) {
             User user = new User();
-            user.setUsername(faker.name().username());
+            String username = faker.name().username();
+            user.setUsername(username);
             int choice = random.nextInt(emailDomains.length);
-            user.setEmail(faker.name().username() + "@" + emailDomains[choice]);
+            user.setEmail(username + "@" + emailDomains[choice]);
             user.setPassword("12345");
+
+//            int year = random.nextInt(5) + 2015;
+            int month = random.nextInt(12) + 1;
+            int day = random.nextInt(27) + 1;
+            int hour = random.nextInt(23);
+            int minute = random.nextInt(60);
+            int second = random.nextInt(60);
+            String fakeDateTime = String.format("%d-%d-%d %d:%d:%d", year,month,day,hour,minute,second);
+            user.setRegisteredOn(fakeDateTime);
+            year++;
+
+            int chance = random.nextInt(4);
+            if(chance > 0) user.setRole("user");
+            else user.setRole("banned");
 
 //            List<Template> templates = new ArrayList<>();
 //            int numOfTemplates = random.nextInt(3) + 1;

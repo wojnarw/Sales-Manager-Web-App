@@ -15,7 +15,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/template")
 public class TemplateController {
-
     private TemplateService templateService;
 
     @Autowired
@@ -45,6 +44,8 @@ public class TemplateController {
 
     @PostMapping("/save")
     public String saveTemplate(Template template) {
+        Template originalTemplate = this.templateService.findOneById(template.getId());
+        template.setCreatedAt(originalTemplate.getCreatedAt());
         templateService.save(template);
         return "redirect:/template";
     }

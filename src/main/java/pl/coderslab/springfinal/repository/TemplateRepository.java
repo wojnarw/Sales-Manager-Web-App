@@ -15,4 +15,5 @@ public interface TemplateRepository extends JpaRepository<Template, Long> {
     Set<Template> findAllWithAllData();
     @Query("select t from Template t left join fetch t.user u where t.id = :id") //  join fetch t.publications p")
     Template findOneByIdWithAllData(@Param("id") Long id);
+    int countAllByUserId(long id);
 }

@@ -11,31 +11,13 @@
 <html>
 <head>
     <title>Templates</title>
-    <style>
-        table {
-            margin: 50px;
-            padding-bottom: 15px;
-        }
-        th {
-            text-align: center;
-            font-weight: bold;
-            padding: 15px;
-            background: #a55d5d;
-        }
-        td {
-            background: #e2e2d2;
-        }
-        .title {
-            font-weight: bold;
-            font-size: large;
-        }
-    </style>
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
 <h3><a href="<c:url value="/template/add"/>">Add</a></h3>
 <h3><a href="<c:url value="/fixtures"/>">Fixtures</a></h3>
 <c:if test="${not empty param.del}"><h3>${param.del} removed successfully</h3></c:if>
-    <table>
+    <table class="entityList">
         <thead>
             <tr>
                 <th>

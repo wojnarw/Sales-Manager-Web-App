@@ -45,8 +45,8 @@ public class Template {
         return "Template{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-//                ", createdAt='" + createdAt + '\'' +
-//                ", updatedAt='" + updatedAt + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
                 ", templateText='" + content + '\'' +
                 '}';
     }

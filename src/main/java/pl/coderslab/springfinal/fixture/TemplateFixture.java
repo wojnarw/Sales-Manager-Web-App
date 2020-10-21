@@ -39,7 +39,7 @@ public class TemplateFixture {
 //            String fakeDateTime = faker.date().past(1, TimeUnit.DAYS).toString();
             int year = random.nextInt(5) + 2015;
             int month = random.nextInt(12) + 1;
-            int day = random.nextInt(31) + 1;
+            int day = random.nextInt(27) + 1;
             int hour = random.nextInt(23);
             int minute = random.nextInt(60);
             int second = random.nextInt(60);

@@ -20,7 +20,7 @@ public interface TemplateService {
 
     public Template findOneByIdWithAllData(Long id);
     public Set<Template> findAllWithAllData();
-
+    int countAllByUserId(long id);
     //find by created date
     //find by updated date
 }
