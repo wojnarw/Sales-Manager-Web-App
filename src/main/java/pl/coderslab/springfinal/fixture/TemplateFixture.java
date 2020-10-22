@@ -34,7 +34,8 @@ public class TemplateFixture {
         Random random = new Random();
         for (int i = 0; i < 10; i++) {
             Template template = new Template();
-            template.setName(faker.commerce().productName());
+            template.setName(faker.app().name());
+            template.setDescription(faker.commerce().productName()); //.lorem().fixedString(50));
             template.setContent(faker.lorem().fixedString(1000));
 //            String fakeDateTime = faker.date().past(1, TimeUnit.DAYS).toString();
             int year = random.nextInt(5) + 2015;

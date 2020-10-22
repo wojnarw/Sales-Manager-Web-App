@@ -73,4 +73,9 @@ public class TemplateServiceDb implements TemplateService {
     public int countAllByUserId(long id) {
         return this.templateRepository.countAllByUserId(id);
     }
+
+    @Override
+    public Set<Template> getLastFive() {
+        return this.templateRepository.getLastFive();
+    }
 }

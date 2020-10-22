@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-<h3><a href="<c:url value="/template/add"/>">Add</a></h3>
-<h3><a href="<c:url value="/fixtures"/>">Fixtures</a></h3>
+<h3><a href="<c:url value="/app/templates/add"/>">Add</a></h3>
+
 <c:if test="${not empty param.del}"><h3>${param.del} removed successfully</h3></c:if>
     <table class="entityList">
         <thead>
@@ -45,17 +45,17 @@
                     ${i}
                 </td>
                 <td>
-                    <a href="<c:url value="/template/${template.id}" />">${template.name}</a>
+                    <a href="<c:url value="/app/templates/${template.id}" />">${template.name}</a>
                 </td>
                 <td>
-<%--                    ${template.description}--%>
+                    ${template.description}
                 </td>
                 <td>
                     ${template.updatedAt}
                 </td>
                 <td>
-                    <a href="<c:url value="/template/edit/${template.id}" />">Edit</a>
-                    <a href="<c:url value="/template/delete/${template.id}" />">Delete</a>
+                    <a href="<c:url value="/app/templates/edit/${template.id}" />">Edit</a>
+                    <a href="<c:url value="/app/templates/delete/${template.id}" />">Delete</a>
                 </td>
             </tr>
         <c:set var="i" value="${i + 1}" />

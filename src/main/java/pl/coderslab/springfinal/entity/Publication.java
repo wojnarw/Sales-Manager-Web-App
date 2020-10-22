@@ -29,8 +29,8 @@ public class Publication {
     @ManyToOne
     User user;
 
-//    @ManyToMany(mappedBy = "publications")
-//    List<Template> templates = new ArrayList<>();
+    @ManyToMany//(mappedBy = "publications")
+    List<Template> templates = new ArrayList<>();
 
     @Override
     public String toString() {

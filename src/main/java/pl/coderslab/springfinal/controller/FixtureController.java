@@ -23,6 +23,6 @@ public class FixtureController {
     public String loadDataToDb() {
         userFixture.createDataInDb();
         templateFixture.createDataInDb();
-        return "redirect:/template";
+        return "redirect:/app";
     }
 }

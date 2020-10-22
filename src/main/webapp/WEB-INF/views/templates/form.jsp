@@ -15,9 +15,9 @@
 
 </head>
 <body>
-    <h3><a href="<c:url value="/template"/>">Back to list</a></h3>
+    <h3><a href="<c:url value="/app/templates"/>">Back to list</a></h3>
     <h2>Template ${template.id == null ? "add" : "edit"} form</h2>
-    <form:form method="post" action="${pageContext.request.contextPath}/template/save" modelAttribute="template">
+    <form:form method="post" action="${pageContext.request.contextPath}/app/templates/save" modelAttribute="template">
         <form:hidden path="id" />
         <form:hidden path="updatedAt" />
         <form:label path="name">Template name: </form:label>

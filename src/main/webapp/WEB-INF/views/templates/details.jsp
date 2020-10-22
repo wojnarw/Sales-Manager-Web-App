@@ -14,13 +14,13 @@
     <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-    <h3><a href="<c:url value="/template"/>">Back to list</a></h3>
+    <h3><a href="<c:url value="/app/templates"/>">Back to list</a></h3>
 
     <c:if test="${delete}">
         <h2>Are you sure you want to delete this template?</h2>
-        <form:form method="post" action="/template/delete/${template.id}">
+        <form:form method="post" action="/app/templates/delete/${template.id}">
             <button type="submit">Delete</button>
-            <a href="<c:url value="/template" />">Cancel</a>
+            <a href="<c:url value="/app/templates" />">Cancel</a>
         </form:form>
     </c:if>
     <h3>Template details</h3>

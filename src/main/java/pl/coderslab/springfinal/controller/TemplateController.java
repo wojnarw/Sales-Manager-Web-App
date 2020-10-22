@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/template")
+@RequestMapping("/app/templates")
 public class TemplateController {
     private TemplateService templateService;
 
@@ -47,7 +47,7 @@ public class TemplateController {
         Template originalTemplate = this.templateService.findOneById(template.getId());
         template.setCreatedAt(originalTemplate.getCreatedAt());
         templateService.save(template);
-        return "redirect:/template";
+        return "redirect:/app/templates";
     }
 //    @PostMapping("/save")
 //    public String saveBook(@Valid Book book, BindingResult validation){
@@ -84,6 +84,6 @@ public class TemplateController {
     public String deleteTemplate(@PathVariable long id, Model model) {
         Template template = templateService.findOneById(id);
         templateService.delete(template);
-        return "redirect:/template?del=" + template.getName();
+        return "redirect:/app/templates?del=" + template.getName();
     }
 }

@@ -29,16 +29,16 @@ public class Template {
     @Column(columnDefinition = "DATETIME")
     private String updatedAt;
 
+    private String description;
+
     @Column(columnDefinition = "TEXT")
     private String content;
 
     @ManyToOne
     User user;
 
-//    @ManyToMany(mappedBy = "templates")
-//    List<Publication> publications = new ArrayList<>();
-
-
+    @ManyToMany//(mappedBy = "templates")
+    List<Publication> publications = new ArrayList<>();
 
     @Override
     public String toString() {

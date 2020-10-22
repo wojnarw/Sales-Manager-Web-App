@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pl.coderslab.springfinal.entity.Template;
+import pl.coderslab.springfinal.entity.User;
 
 import java.util.Set;
 
@@ -16,4 +17,7 @@ public interface TemplateRepository extends JpaRepository<Template, Long> {
     @Query("select t from Template t left join fetch t.user u where t.id = :id") //  join fetch t.publications p")
     Template findOneByIdWithAllData(@Param("id") Long id);
     int countAllByUserId(long id);
+    @Query(value = "SELECT * FROM templates ORDER BY templates.id DESC LIMIT 5",
+            nativeQuery = true)
+    Set<Template> getLastFive();
 }
