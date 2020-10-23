@@ -20,4 +20,5 @@ public interface TemplateRepository extends JpaRepository<Template, Long> {
     @Query(value = "SELECT * FROM templates ORDER BY templates.id DESC LIMIT 5",
             nativeQuery = true)
     Set<Template> getLastFive();
+
 }

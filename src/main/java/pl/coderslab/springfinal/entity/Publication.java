@@ -29,7 +29,7 @@ public class Publication {
     @ManyToOne
     User user;
 
-    @ManyToMany//(mappedBy = "publications")
+    @ManyToMany
     List<Template> templates = new ArrayList<>();
 
     @Override

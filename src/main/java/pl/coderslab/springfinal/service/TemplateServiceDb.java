@@ -78,4 +78,9 @@ public class TemplateServiceDb implements TemplateService {
     public Set<Template> getLastFive() {
         return this.templateRepository.getLastFive();
     }
+
+    @Override
+    public List<Template> getAllByPage(int page) {
+        return this.templateRepository.findAll();
+    }
 }
