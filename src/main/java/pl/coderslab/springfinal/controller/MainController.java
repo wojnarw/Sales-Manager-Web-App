@@ -13,6 +13,8 @@ public class MainController {
         return "mainPage";
     }
 
+
+
     @GetMapping("/contact")
     public String showContactPage() {
         return "contact";

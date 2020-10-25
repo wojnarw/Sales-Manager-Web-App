@@ -3,25 +3,39 @@ package pl.coderslab.springfinal.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.coderslab.springfinal.entity.Role;
 import pl.coderslab.springfinal.entity.User;
+import pl.coderslab.springfinal.repository.RoleRepository;
 import pl.coderslab.springfinal.repository.UserRepository;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Service
 public class UserServiceDb implements UserService {
     private UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceDb(UserRepository userRepository) {
+    public UserServiceDb(UserRepository userRepository,
+                           RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
-    public void save(User user) {
-        this.userRepository.save(user);
+    public User save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEnabled(true);
+        Role userRole = roleRepository.findByName("ROLE_USER");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        return this.userRepository.save(user);
     }
 
     @Override
@@ -97,5 +111,10 @@ public class UserServiceDb implements UserService {
             default: users = this.userRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
         }
         return users;
+    }
+
+    @Override
+    public User findByUserName(String username) {
+        return this.userRepository.findByUsername(username);
     }
 }

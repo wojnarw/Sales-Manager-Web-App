@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.springfinal.entity.Publication;
 import pl.coderslab.springfinal.entity.User;
 import pl.coderslab.springfinal.service.TemplateService;
 import pl.coderslab.springfinal.service.UserService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 

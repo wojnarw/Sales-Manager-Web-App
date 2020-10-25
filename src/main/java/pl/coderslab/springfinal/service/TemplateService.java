@@ -1,7 +1,6 @@
 package pl.coderslab.springfinal.service;
 
-import org.springframework.stereotype.Service;
-import pl.coderslab.springfinal.entity.Publication;
+import pl.coderslab.springfinal.entity.Creation;
 import pl.coderslab.springfinal.entity.Template;
 import pl.coderslab.springfinal.entity.User;
 
@@ -18,7 +17,7 @@ public interface TemplateService {
 //    public List<Template> findAll(String sortType);
     public List<Template> findAllWithUser();
     public List<Template> findAllWithThisUser(User user);
-    public List<Template> findAllWithThisPublication(Publication publication);
+    public List<Template> findAllWithThisPublication(Creation creation);
 
     public Template findOneByIdWithAllData(Long id);
     public Set<Template> findAllWithAllData();

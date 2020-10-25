@@ -12,6 +12,7 @@ import java.util.Set;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    User findByUsername(String username);
     User findByEmail(String email);
     @Query("select u from User u left join fetch u.templates t where u.id = ?1") //  join fetch u.publications p")
     User findOneByIdWithAllData(Long id);
@@ -22,7 +23,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT * FROM users ORDER BY users.id DESC LIMIT 5",
             nativeQuery = true)
     Set<User> getLastFive();
-
 
 
 

@@ -37,8 +37,8 @@ public class Template {
     @ManyToOne
     User user;
 
-    @ManyToMany
-    List<Publication> publications = new ArrayList<>();
+    @ManyToMany(mappedBy = "templates")
+    List<Creation> creations = new ArrayList<>();
 
     @Override
     public String toString() {
