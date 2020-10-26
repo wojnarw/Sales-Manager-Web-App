@@ -36,7 +36,7 @@ public class TemplateFixture {
             Template template = new Template();
             template.setName(faker.app().name());
             template.setDescription(faker.commerce().productName()); //.lorem().fixedString(50));
-            template.setContent(faker.lorem().fixedString(1000));
+            template.setContent(faker.lorem().fixedString(300));
 //            String fakeDateTime = faker.date().past(1, TimeUnit.DAYS).toString();
             int year = random.nextInt(5) + 2015;
             int month = random.nextInt(12) + 1;

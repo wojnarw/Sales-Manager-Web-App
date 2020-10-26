@@ -22,3 +22,24 @@ table.entityList td {
 .banned {
     color: crimson !important;
 }
+
+#creationHeader {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin:20px;
+}
+#templatesTable {
+    border: 1px solid #ccc;
+    padding: 30px 20px;
+    margin:20px;
+}
+#templatesTable td {
+    padding: 0 15px;
+}
+
+.template-content {
+    min-height: 50px;
+}
+.field-name {
+    font-weight: bold;
+}

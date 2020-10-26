@@ -13,11 +13,11 @@ public interface TemplateService {
     public Template findOneById(Long id);
     public Template findOneByName(String name);
     public List<Template> findAll();
-    public List<Template> getAllByPage(int page);
+//    public List<Template> getAllByPage(int page);
 //    public List<Template> findAll(String sortType);
     public List<Template> findAllWithUser();
     public List<Template> findAllWithThisUser(User user);
-    public List<Template> findAllWithThisPublication(Creation creation);
+    public List<Template> findAllWithThisCreation(Creation creation);
 
     public Template findOneByIdWithAllData(Long id);
     public Set<Template> findAllWithAllData();

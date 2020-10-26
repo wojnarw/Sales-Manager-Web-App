@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -31,10 +32,16 @@ public class Creation {
     private String updatedAt;
 
     @Column(columnDefinition = "TEXT")
-    private String content;
+    private String jsonFields;
+
+//    @Column(columnDefinition = "TEXT")
+//    private String content;
 
     @ManyToOne
     User user;
+
+    @OneToMany(mappedBy = "creation")
+    List<InputFields> inputFields;
 
     @ManyToMany
     List<Template> templates = new ArrayList<>();
@@ -44,9 +51,14 @@ public class Creation {
         return "Creation{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", updatedAt='" + updatedAt + '\'' +
-                ", content='" + content + '\'' +
+                ", jsonFields='" + jsonFields + '\'' +
+//                ", content='" + content + '\'' +
+//                ", user=" + user +
+//                ", inputFields=" + inputFields +
+//                ", templates=" + templates +
                 '}';
     }
 }

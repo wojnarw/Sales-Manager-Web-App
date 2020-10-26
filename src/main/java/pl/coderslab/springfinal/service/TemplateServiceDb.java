@@ -56,10 +56,9 @@ public class TemplateServiceDb implements TemplateService {
     }
 
     @Override
-    public List<Template> findAllWithThisPublication(Creation creation) {
+    public List<Template> findAllWithThisCreation(Creation creation) {
         return null;
     }
-
     @Override
     public Template findOneByIdWithAllData(Long id) {
         return templateRepository.findOneByIdWithAllData(id);
@@ -79,8 +78,4 @@ public class TemplateServiceDb implements TemplateService {
         return this.templateRepository.getLastFive();
     }
 
-    @Override
-    public List<Template> getAllByPage(int page) {
-        return this.templateRepository.findAll();
-    }
 }
