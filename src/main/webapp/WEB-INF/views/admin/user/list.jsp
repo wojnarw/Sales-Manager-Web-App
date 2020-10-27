@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
 <a href="<c:url value="/admin"/>">Back to admin dashboard</a>

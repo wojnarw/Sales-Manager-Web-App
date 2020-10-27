@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
     <h3><a href="<c:url value="/admin/users"/>">Back to list</a></h3>

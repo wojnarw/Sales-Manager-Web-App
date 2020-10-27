@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>app</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/styles.css">
 </head>
 <body>
 <a href="${pageContext.request.contextPath}/fixtures">fixtures</a>

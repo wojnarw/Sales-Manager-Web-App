@@ -3,14 +3,12 @@ package pl.coderslab.springfinal.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springfinal.entity.Creation;
 import pl.coderslab.springfinal.entity.InputFields;
 import pl.coderslab.springfinal.entity.Template;
 import pl.coderslab.springfinal.service.CreationService;
+import pl.coderslab.springfinal.service.TemplateService;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -22,10 +20,12 @@ import java.util.stream.Collectors;
 public class CreationController {
 
     private CreationService creationService;
+    private TemplateService templateService;
 
     @Autowired
-    public CreationController(CreationService creationService) {
+    public CreationController(CreationService creationService, TemplateService templateService) {
         this.creationService = creationService;
+        this.templateService = templateService;
     }
 
     @GetMapping("")
@@ -83,5 +83,12 @@ public class CreationController {
         Creation creation = creationService.findOneById(id);
         creationService.delete(creation);
         return "redirect:/app/creation?del=" + creation.getName();
+    }
+
+//TODO zmienic na templatki danego uzytkownika
+    @ModelAttribute("allTemplates")
+    public List<Template> templateList() {
+        List<Template> templates = this.templateService.findAll();
+        return templates;
     }
 }

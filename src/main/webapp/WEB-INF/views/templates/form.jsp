@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Template creator</title>
-    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
 
 </head>
 <body>

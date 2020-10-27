@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Templates</title>
-    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
 <h3><a href="<c:url value="/app/templates/add"/>">Add</a></h3>
