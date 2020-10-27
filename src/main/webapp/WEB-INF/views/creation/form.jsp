@@ -12,6 +12,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/css/styles.css">
+<%--    <link rel="stylesheet" href="/css/sb-admin-2.min.css">--%>
 </head>
 <body>
 
@@ -46,12 +47,19 @@
         <tbody>
             <c:forEach items="${creation.templates}" var="template" varStatus="status">
             <tr>
-                <td></td>
                 <td>
                     <span class="field-name">Template name: </span><span>${template.name}</span>
                 </td>
+                <td class="templateControls">
+                    <c:if test="${not status.first}">
+                        <button>↑</button>
+                    </c:if>
+                    <c:if test="${not status.last}">
+                        <button>↓</button>
+                    </c:if>
+                </td>
                 <td>
-                    <textarea class="template-content" cols="100" oninput="auto_grow(this);" onkeyup="update_fields(this);">${template.content}</textarea>
+                    <textarea class="template-content" cols="80" oninput="auto_grow(this);" onkeyup="update_fields(this);">${template.content}</textarea>
                 </td>
                 <td>
                     <c:if test="${not empty template.description}">
@@ -96,8 +104,7 @@
         matches.forEach(match => {
             let exists = false;
             console.log("match: " + match);
-            match = match.replace("{","");
-            match = match.replace("}","");
+            match = match.replace(/[\{\}]/g,"");
             let input_fields = dataFieldsEl.querySelectorAll("input");
 
             input_fields.forEach(element => {

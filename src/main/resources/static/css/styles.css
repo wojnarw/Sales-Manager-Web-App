@@ -36,6 +36,10 @@ table.entityList td {
 #templatesTable td {
     padding: 0 15px;
 }
+.templateControls {
+    padding: 0 !important;
+    text-align: center;
+}
 
 .template-content {
     min-height: 50px;
