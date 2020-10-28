@@ -14,7 +14,7 @@
 </head>
 <body>
     <h3><a href="<c:url value="/app"/>">Back to dashboard</a></h3>
-    <h2>Template ${user.id == null ? "add" : "edit"} form</h2>
+    <h2>Account details</h2>
     <form:form method="post" action="${pageContext.request.contextPath}/user/save" modelAttribute="user">
         <form:hidden path="id" />
         <form:label path="username">Username: </form:label>
