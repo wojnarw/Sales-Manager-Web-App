@@ -44,8 +44,11 @@ public class TemplateController {
 
     @PostMapping("/save")
     public String saveTemplate(Template template) {
-        Template originalTemplate = this.templateService.findOneById(template.getId());
-        template.setCreatedAt(originalTemplate.getCreatedAt());
+        Long id = template.getId();
+        if(id != null) {
+            Template originalTemplate = this.templateService.findOneById(id);
+            template.setCreatedAt(originalTemplate.getCreatedAt());
+        }
         templateService.save(template);
         return "redirect:/app/templates";
     }

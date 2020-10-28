@@ -15,10 +15,10 @@
 <%--    <link rel="stylesheet" href="/css/sb-admin-2.min.css">--%>
 </head>
 <body>
+<jsp:include page="/WEB-INF/fragments/menu.jsp" />
 
-<h3><a href="/app/creation">Back to list</a></h3>
 <h2>Creation ${creation.id == null ? "add" : "edit"} form</h2>
-<form:form method="post" action="${pageContext.request.contextPath}/app/creation/save" modelAttribute="creation">
+<form:form method="post" action="${pageContext.request.contextPath}/creation/save" modelAttribute="creation">
     <div id="creationHeader">
         <form:hidden path="id" />
 
@@ -34,9 +34,14 @@
         <br />
 
         <div id="dataFields">
-        <c:forEach items="${fields}" var="field">
-            <label for="${field.key}" class="field-name">${field.key}</label>
-            <input type="text" id="${field.key}" value="${field.value}"><br />
+<%--        <c:forEach items="${fields}" var="field">--%>
+<%--            <label for="${field.key}" class="field-name">${field.key}</label>--%>
+<%--            <input type="text" id="${field.key}" value="${field.value}" path="inputFields"><br />--%>
+<%--        </c:forEach>--%>
+        <c:forEach items="${creation.inputFields}" var="field">
+            <label for="${field.value}" class="field-name">${field.name}</label>
+            <input type="hidden" id="${field.name}" value="${field.name}" name="name" path="inputFields"><br />
+            <input type="text" id="${field.value}" value="${field.value}" name="value" path="inputFields"><br />
         </c:forEach>
         </div>
 
@@ -48,7 +53,7 @@
             <c:forEach items="${creation.templates}" var="template" varStatus="status">
             <tr>
                 <td>
-                    <span class="field-name">Template name: </span><span>${template.name}</span>
+                    <span class="field-name"> </span><span>${template.name}</span>
                 </td>
                 <td class="templateControls">
                     <c:if test="${not status.first}">
@@ -138,7 +143,11 @@
         templateContentElems.forEach(element => auto_grow(element));
     }
 
-    document.addEventListener("DOMContentLoaded", setTextareaStartingHeight);
+    document.addEventListener("DOMContentLoaded", function () {
+        setTextareaStartingHeight();
+        const templateContentElems = document.querySelectorAll(".template-content");
+        templateContentElems.forEach(element => {update_fields(this)});
+    });
 
 </script>
 </body>

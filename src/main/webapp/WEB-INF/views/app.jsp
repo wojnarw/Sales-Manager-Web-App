@@ -10,13 +10,10 @@
 <html>
 <head>
     <title>app</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/fixtures">fixtures</a>
-<a href="${pageContext.request.contextPath}/admin">admin</a>
-<a href="${pageContext.request.contextPath}/user/account">user account</a>
-<a href="${pageContext.request.contextPath}/app/templates">templates</a>
+<jsp:include page="/WEB-INF/fragments/menu.jsp" />
 
 <table class="entityList">
     <thead>

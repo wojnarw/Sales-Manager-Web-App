@@ -11,18 +11,26 @@
 <html>
 <head>
     <title>Template creator</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 
 </head>
 <body>
-    <h3><a href="<c:url value="/app/templates"/>">Back to list</a></h3>
+<jsp:include page="/WEB-INF/fragments/menu.jsp" />
+
+<h3><a href="<c:url value="/app/templates"/>">Back to list</a></h3>
     <h2>Template ${template.id == null ? "add" : "edit"} form</h2>
     <form:form method="post" action="${pageContext.request.contextPath}/app/templates/save" modelAttribute="template">
         <form:hidden path="id" />
         <form:hidden path="updatedAt" />
+
         <form:label path="name">Template name: </form:label>
         <form:input path="name" />
         <form:errors path="name"/>
+
+        <form:label path="description">Template description: </form:label>
+        <form:input path="description" />
+        <form:errors path="description"/>
+
         <form:textarea path="content"  />
         <form:errors path="content" />
 

@@ -42,19 +42,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/vendor/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/app","/app/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
-                .and().formLogin()
-                .and().logout().logoutSuccessUrl("/")
-                .and().exceptionHandling().accessDeniedPage("/403");;
-                //.loginPage("/login");
+            .antMatchers("/").permitAll()
+            .antMatchers("/login").permitAll()
+            .antMatchers("/register").permitAll()
+            .antMatchers("/admin","/admin/**").hasAuthority("ADMIN").anyRequest()
+            .authenticated().and().csrf().disable().formLogin()
+            .loginPage("/login").failureUrl("/login?error=true")
+            .defaultSuccessUrl("/app")
+            .usernameParameter("username")
+            .passwordParameter("password")
+            .and().logout()
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .logoutSuccessUrl("/login").and().exceptionHandling()
+            .accessDeniedPage("/access-denied");
+
+//        http.authorizeRequests()
+//                .antMatchers("/").permitAll()
+//                .antMatchers("/app","/app/**").hasAnyRole("USER", "ADMIN")
+//                .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
+//                .and().formLogin()
+////                .loginPage("/login")
+//                .and().logout().logoutSuccessUrl("/")
+//                .and().exceptionHandling().accessDeniedPage("/403");
+
     }
 
 //    @Override

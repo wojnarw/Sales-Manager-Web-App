@@ -11,9 +11,11 @@
 <html>
 <head>
     <title>Templates</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
+<jsp:include page="/WEB-INF/fragments/menu.jsp" />
+
 <h3><a href="<c:url value="/app/templates/add"/>">Add</a></h3>
 
 <c:if test="${not empty param.del}"><h3>${param.del} removed successfully</h3></c:if>

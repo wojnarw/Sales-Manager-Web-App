@@ -10,11 +10,13 @@
 <html>
 <head>
     <title>Admin dashboard</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+<jsp:include page="/WEB-INF/fragments/menu.jsp" />
 
-    <table class="entityList">
+
+<table class="entityList">
         <thead>
             <tr>
                 <td colspan="4">
