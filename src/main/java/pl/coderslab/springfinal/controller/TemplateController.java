@@ -1,11 +1,13 @@
 package pl.coderslab.springfinal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springfinal.entity.Template;
+import pl.coderslab.springfinal.service.CurrentUser;
 import pl.coderslab.springfinal.service.TemplateService;
 
 import javax.transaction.Transactional;
@@ -24,8 +26,8 @@ public class TemplateController {
 
     @GetMapping()
 //    @Transactional
-    public String allTemplates(Model model) {
-        List<Template> templateList = this.templateService.findAll();
+    public String myTemplates(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+        List<Template> templateList = this.templateService.findAllWithThisUser(currentUser.getUser());
         model.addAttribute("templates", templateList);
         return "templates/list";
     }
@@ -43,11 +45,12 @@ public class TemplateController {
     }
 
     @PostMapping("/save")
-    public String saveTemplate(Template template) {
+    public String saveTemplate(Template template, @AuthenticationPrincipal CurrentUser currentUser) {
         Long id = template.getId();
         if(id != null) {
             Template originalTemplate = this.templateService.findOneById(id);
             template.setCreatedAt(originalTemplate.getCreatedAt());
+            template.setUser(currentUser.getUser());
         }
         templateService.save(template);
         return "redirect:/app/templates";
@@ -63,8 +66,9 @@ public class TemplateController {
 //    }
 
     @GetMapping("/edit/{id}")
-    public String templateEdit(@PathVariable long id, Model model){
-        Template template = templateService.findOneByIdWithAllData(id);
+    public String templateEdit(@PathVariable long id, Model model, @AuthenticationPrincipal CurrentUser currentUser){
+        Template template = templateService.findOneByIdAndUser(id, currentUser.getUser());
+        if(template == null) return "errors/404";
         model.addAttribute("template", template);
         return "templates/form";
     }
@@ -77,15 +81,17 @@ public class TemplateController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteTemplateConfirm(@PathVariable long id, Model model){
-        Template template = templateService.findOneByIdWithAllData(id);
+    public String deleteTemplateConfirm(@PathVariable long id, Model model, @AuthenticationPrincipal CurrentUser currentUser){
+        Template template = templateService.findOneByIdAndUser(id, currentUser.getUser());
+        if(template == null) return "errors/404";
         model.addAttribute("template", template);
         model.addAttribute("delete", true);
         return "templates/details";
     }
     @PostMapping("/delete/{id}")
-    public String deleteTemplate(@PathVariable long id, Model model) {
-        Template template = templateService.findOneById(id);
+    public String deleteTemplate(@PathVariable long id, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+        Template template = templateService.findOneByIdAndUser(id, currentUser.getUser());
+        if(template == null) return "errors/404";
         templateService.delete(template);
         return "redirect:/app/templates?del=" + template.getName();
     }

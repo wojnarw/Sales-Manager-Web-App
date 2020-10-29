@@ -23,6 +23,7 @@ public interface TemplateService {
     public Set<Template> findAllWithAllData();
     int countAllByUserId(long id);
     Set<Template> getLastFive();
+    Template findOneByIdAndUser(Long id, User user);
     //find by created date
     //find by updated date
 }

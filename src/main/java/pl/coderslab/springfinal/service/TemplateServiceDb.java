@@ -52,7 +52,7 @@ public class TemplateServiceDb implements TemplateService {
 
     @Override
     public List<Template> findAllWithThisUser(User user) {
-        return null;
+        return this.templateRepository.findAllByUser(user);
     }
 
     @Override
@@ -78,4 +78,8 @@ public class TemplateServiceDb implements TemplateService {
         return this.templateRepository.getLastFive();
     }
 
+    @Override
+    public Template findOneByIdAndUser(Long id, User user) {
+        return this.templateRepository.findOneByIdAndUser(id, user);
+    }
 }

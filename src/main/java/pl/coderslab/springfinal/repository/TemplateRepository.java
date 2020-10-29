@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import pl.coderslab.springfinal.entity.Template;
 import pl.coderslab.springfinal.entity.User;
 
+import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -20,5 +21,7 @@ public interface TemplateRepository extends JpaRepository<Template, Long> {
     @Query(value = "SELECT * FROM templates ORDER BY templates.id DESC LIMIT 5",
             nativeQuery = true)
     Set<Template> getLastFive();
+    Template findOneByIdAndUser(Long id, User user);
+    List<Template> findAllByUser(User user);
 
 }
