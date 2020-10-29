@@ -19,7 +19,7 @@
     <thead>
     <tr>
         <td colspan="4">
-            Last created templates
+            Last templates
         </td>
         <td>
             <a href="<c:url value="/app/templates" />">Show all</a>
@@ -62,6 +62,62 @@
             <td>
                 <a href="<c:url value="/app/templates/edit/${template.id}" />">Edit</a>
                 <a href="<c:url value="/app/templates/delete/${template.id}" />">Delete</a>
+            </td>
+        </tr>
+        <c:set var="i" value="${i + 1}" />
+    </c:forEach>
+    </tbody>
+</table>
+
+<hr>
+
+<table class="entityList">
+    <thead>
+    <tr>
+        <td colspan="4">
+            Last creations
+        </td>
+        <td>
+            <a href="<c:url value="/app/creations" />">Show all</a>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            Creation name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Last updated
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:set var="i" value="1" />
+    <c:forEach items="${lastFiveCreations}" var="creation">
+        <tr>
+            <td>
+                    ${i}
+            </td>
+            <td>
+                <a href="<c:url value="/app/creations/${creation.id}" />">${creation.name}</a>
+            </td>
+            <td>
+                    ${creation.description}
+            </td>
+            <td>
+                    ${creation.updatedAt}
+            </td>
+            <td>
+                <a href="<c:url value="/app/creations/edit/${creation.id}" />">Edit</a>
+                <a href="<c:url value="/app/creations/delete/${creation.id}" />">Delete</a>
             </td>
         </tr>
         <c:set var="i" value="${i + 1}" />

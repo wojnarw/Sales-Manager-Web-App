@@ -18,7 +18,7 @@
 <jsp:include page="/WEB-INF/fragments/menu.jsp" />
 
 <h2>Creation ${creation.id == null ? "add" : "edit"} form</h2>
-<form:form method="post" action="${pageContext.request.contextPath}/creation/save" modelAttribute="creation">
+<form:form method="post" action="${pageContext.request.contextPath}/creations/save" modelAttribute="creation">
     <div id="creationHeader">
         <form:hidden path="id" />
 
@@ -96,6 +96,14 @@
 </form:form>
 
 <script>
+    //set last updated datetime
+    window.addEventListener("DOMContentLoaded", function () {
+        console.log("event fired");
+        let currentTime = new Date().toISOString().slice(0, 19).replace('T', ' ');;
+        document.getElementById("updatedAt").value = currentTime;
+    });
+
+    //create new input fields based on textarea content
     const dataFieldsEl = document.getElementById("dataFields");
 
     function update_fields(element) {
@@ -133,11 +141,13 @@
         });
     }
 
+    //textarea grow with input
     function auto_grow(element) {
         element.style.height = "5px";
         element.style.height = (element.scrollHeight)+"px";
     }
 
+    //resize textareas based on data loaded from database
     const setTextareaStartingHeight = function() {
         const templateContentElems = document.querySelectorAll(".template-content");
         templateContentElems.forEach(element => auto_grow(element));

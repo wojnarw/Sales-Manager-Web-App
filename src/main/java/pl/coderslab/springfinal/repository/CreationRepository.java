@@ -20,4 +20,11 @@ public interface CreationRepository extends JpaRepository<Creation,Long> {
     @Query("select c from Creation c left join fetch c.user left join fetch c.inputFields where c.id = :id") //  join fetch t.publications p")
     Creation findOneByIdWithAllData(@Param("id") Long id);
     int countAllByUserId(Long id);
+
+    List<Creation> findAllByUser(User user);
+    Creation findOneByIdAndUser(Long id, User user);
+    //TODO change to pageable
+    @Query(value = "SELECT * FROM creations ORDER BY creations.id DESC LIMIT 5",
+            nativeQuery = true)
+    Set<Creation> getLastFive();
 }

@@ -22,4 +22,8 @@ public interface CreationService {
     public Creation findOneByIdWithAllData(Long id);
     public Set<Creation> findAllWithAllData();
     int countAllByUserId(long id);
+
+    List<Creation> findAllByUser(User user);
+    Creation findOneByIdAndUser(Long id, User user);
+    Set<Creation> getLastFive();
 }

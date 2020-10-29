@@ -14,7 +14,7 @@
 <a href="${pageContext.request.contextPath}/app">app</a><br />
 <a href="${pageContext.request.contextPath}/user/account">user account</a><br />
 <a href="${pageContext.request.contextPath}/app/templates">templates</a><br />
-<a href="${pageContext.request.contextPath}/creation/1">creation 1</a><br />
+<a href="${pageContext.request.contextPath}/app/creations">creations</a><br />
 <a href="${pageContext.request.contextPath}/admin">admin</a><br />
 <a href="${pageContext.request.contextPath}/fixtures">fixtures</a><br />
 <a href="${pageContext.request.contextPath}/logout">logout</a><br />

@@ -47,11 +47,13 @@ public class TemplateController {
     @PostMapping("/save")
     public String saveTemplate(Template template, @AuthenticationPrincipal CurrentUser currentUser) {
         Long id = template.getId();
+        //if template already exists (edit it)
         if(id != null) {
             Template originalTemplate = this.templateService.findOneById(id);
             template.setCreatedAt(originalTemplate.getCreatedAt());
             template.setUser(currentUser.getUser());
         }
+        template.setCreatedAt(template.getUpdatedAt());
         templateService.save(template);
         return "redirect:/app/templates";
     }
@@ -76,6 +78,7 @@ public class TemplateController {
     @GetMapping("/{id}")
     public String templateDetails(@PathVariable long id, Model model){
         Template template = templateService.findOneByIdWithAllData(id);
+        if(template == null) return "errors/404";
         model.addAttribute("template", template);
         return "templates/details";
     }

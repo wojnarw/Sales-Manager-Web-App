@@ -70,4 +70,18 @@ public class CreationServiceDb implements CreationService {
         return this.creationRepository.countAllByUserId(id);
     }
 
+    @Override
+    public List<Creation> findAllByUser(User user) {
+        return this.creationRepository.findAllByUser(user);
+    }
+
+    @Override
+    public Creation findOneByIdAndUser(Long id, User user) {
+        return this.creationRepository.findOneByIdAndUser(id, user);
+    }
+
+    @Override
+    public Set<Creation> getLastFive() {
+        return this.creationRepository.getLastFive();
+    }
 }

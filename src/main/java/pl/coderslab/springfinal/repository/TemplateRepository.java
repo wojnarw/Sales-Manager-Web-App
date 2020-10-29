@@ -18,6 +18,7 @@ public interface TemplateRepository extends JpaRepository<Template, Long> {
     @Query("select t from Template t left join fetch t.user u where t.id = :id") //  join fetch t.publications p")
     Template findOneByIdWithAllData(@Param("id") Long id);
     int countAllByUserId(long id);
+    //TODO change to pageable
     @Query(value = "SELECT * FROM templates ORDER BY templates.id DESC LIMIT 5",
             nativeQuery = true)
     Set<Template> getLastFive();
