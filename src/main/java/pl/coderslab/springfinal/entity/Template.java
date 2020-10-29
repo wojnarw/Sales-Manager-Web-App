@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Template {
     private Long id;
 
     @Size(min = 2, max = 255)
-    @NotNull
+    @NotEmpty
     private String name;
 
     @Column(columnDefinition = "DATETIME")
@@ -29,6 +30,7 @@ public class Template {
     @Column(columnDefinition = "DATETIME")
     private String updatedAt;
 
+    @Size(min = 0, max = 255)
     private String description;
 
     @Column(columnDefinition = "TEXT")

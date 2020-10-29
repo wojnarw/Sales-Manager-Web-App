@@ -11,15 +11,18 @@
 
         <form:label path="name" cssClass="w-25">Name: </form:label>
         <form:input path="name" cssClass="w-75" />
-        <form:errors path="name"/>
+        <br>
+        <form:errors path="name" cssClass="text-danger" />
         <br>
         <form:label path="description" cssClass="w-25">Description: </form:label>
         <form:input path="description" cssClass="w-75" />
-        <form:errors path="description"/>
+        <br>
+        <form:errors path="description" cssClass="text-danger"/>
         <br>
         <form:label path="content" cssClass="w-25">Content: </form:label>
         <form:textarea path="content" cssClass="w-100" rows="10" />
-        <form:errors path="content" />
+        <br>
+        <form:errors path="content" cssClass="text-danger" />
         <br>
         <button type="submit" class="btn btn-block btn-info text-white">Save</button>
     </form:form>

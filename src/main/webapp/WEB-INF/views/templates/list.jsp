@@ -9,7 +9,14 @@
 <div class="card shadow mb-4">
 
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Templates <a class="btn btn-info text-white" href="<c:url value="/app/templates/add"/>">Add new</a></h6>
+        <h2 class="m-0 font-weight-bold text-primary">Templates
+            <a href="${pageContext.request.contextPath}/app/templates/add" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-plus"></i>
+                    </span>
+                <span class="text text-white">Add new</span>
+            </a>
+        </h2>
     </div>
 
     <div class="card-body">
@@ -21,6 +28,7 @@
                     <th>Description</th>
                     <th>Last updated</th>
                     <th></th>
+                </tr>
             </thead>
 
             <tbody>
@@ -32,8 +40,15 @@
                         <td>${template.description}</td>
                         <td>${template.createdAt}</td>
                         <td>
-                            <a class="btn btn-info text-white" href="<c:url value="/app/templates/edit/${template.id}" />">Edit</a>
-                            <a class="btn btn-warning text-white" href="<c:url value="/app/templates/delete/${template.id}" />">Delete</a>
+                            <a href="${pageContext.request.contextPath}/app/templates/edit/${template.id}" class="btn btn-info btn-icon-split">
+                            <span class="icon text-white-50"><i class="fas fa-flag"></i></span>
+                            <span class="text text-white">Edit</span>
+                            </a>
+
+                            <a href="${pageContext.request.contextPath}/app/templates/delete/${template.id}" class="btn btn-danger btn-icon-split">
+                                <span class="icon text-white-50"><i class="fas fa-trash"></i></span>
+                                <span class="text text-white">Delete</span>
+                            </a>
                         </td>
                     </tr>
                 </c:forEach>

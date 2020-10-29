@@ -50,7 +50,10 @@ public class TemplateController {
     }
 
     @PostMapping("/save")
-    public String saveTemplate(Template template, @AuthenticationPrincipal CurrentUser currentUser) {
+    public String saveTemplate(@Valid Template template, BindingResult validation, @AuthenticationPrincipal CurrentUser currentUser) {
+        if(validation.hasErrors()){
+            return "templates/form";
+        }
         Long id = template.getId();
         //if template already exists (edit it)
         if(id != null) {

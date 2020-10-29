@@ -6,10 +6,20 @@
 <div class="card shadow mb-4">
 
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Last templates
-            <a class="btn btn-info text-white" href="${pageContext.request.contextPath}/app/templates/add">Add new</a>
-            <a class="btn btn-facebook text-white" href="${pageContext.request.contextPath}/app/templates">Show all</a>
-        </h6>
+        <h2 class="m-0 font-weight-bold text-primary">Last templates
+            <a href="${pageContext.request.contextPath}/app/templates/add" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-plus"></i>
+                    </span>
+                <span class="text text-white">Add new</span>
+            </a>
+            <a href="${pageContext.request.contextPath}/app/templates" class="btn btn-info btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-list"></i>
+                    </span>
+                <span class="text text-white">Show all</span>
+            </a>
+        </h2>
     </div>
 
     <div class="card-body">
@@ -43,8 +53,15 @@
                             ${template.updatedAt}
                     </td>
                     <td>
-                        <a class="btn btn-info text-white" href="<c:url value="/app/templates/edit/${template.id}" />">Edit</a>
-                        <a class="btn btn-warning text-white" href="<c:url value="/app/templates/delete/${template.id}" />">Delete</a>
+                        <a href="${pageContext.request.contextPath}/app/templates/edit/${template.id}" class="btn btn-info btn-icon-split">
+                            <span class="icon text-white-50"><i class="fas fa-flag"></i></span>
+                            <span class="text text-white">Edit</span>
+                        </a>
+
+                        <a href="${pageContext.request.contextPath}/app/templates/delete/${template.id}" class="btn btn-danger btn-icon-split">
+                            <span class="icon text-white-50"><i class="fas fa-trash"></i></span>
+                            <span class="text text-white">Delete</span>
+                        </a>
                     </td>
                 </tr>
             </c:forEach>
@@ -53,10 +70,20 @@
     </div>
 
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Last creations
-            <a class="btn btn-info text-white" href="${pageContext.request.contextPath}/app/creations/add">Add new</a>
-            <a class="btn btn-facebook text-white" href="${pageContext.request.contextPath}/app/creations">Show all</a>
-        </h6>
+        <h2 class="m-0 font-weight-bold text-primary">Last creations
+            <a href="${pageContext.request.contextPath}/app/creations/add" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-plus"></i>
+                    </span>
+                <span class="text text-white">Add new</span>
+            </a>
+            <a href="${pageContext.request.contextPath}/app/creations" class="btn btn-info btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-list"></i>
+                    </span>
+                <span class="text text-white">Show all</span>
+            </a>
+        </h2>
     </div>
 
 
@@ -91,8 +118,15 @@
                             ${creation.updatedAt}
                     </td>
                     <td>
-                        <a class="btn btn-info text-white" href="<c:url value="/app/creations/edit/${creation.id}" />">Edit</a>
-                        <a class="btn btn-warning text-white" href="<c:url value="/app/creations/delete/${creation.id}" />">Delete</a>
+                        <a href="${pageContext.request.contextPath}/app/creations/edit/${template.id}" class="btn btn-info btn-icon-split">
+                            <span class="icon text-white-50"><i class="fas fa-flag"></i></span>
+                            <span class="text text-white">Edit</span>
+                        </a>
+
+                        <a href="${pageContext.request.contextPath}/app/creations/delete/${template.id}" class="btn btn-danger btn-icon-split">
+                            <span class="icon text-white-50"><i class="fas fa-trash"></i></span>
+                            <span class="text text-white">Delete</span>
+                        </a>
                     </td>
                 </tr>
             </c:forEach>
