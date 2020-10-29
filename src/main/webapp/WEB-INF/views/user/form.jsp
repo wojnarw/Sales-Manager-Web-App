@@ -15,10 +15,10 @@
 <body>
     <h3><a href="<c:url value="/app"/>">Back to dashboard</a></h3>
     <h2>Account details</h2>
-    <form:form method="post" action="${pageContext.request.contextPath}/user/save" modelAttribute="user">
+    <form:form method="post" action="${pageContext.request.contextPath}/app/user/save" modelAttribute="user">
         <form:hidden path="id" />
         <form:label path="username">Username: </form:label>
-        <form:input path="username" disabled="{isDisabled}" />
+        <form:input path="username"/>
         <form:errors path="username"/>
 
         <form:label path="email">E-mail: </form:label>

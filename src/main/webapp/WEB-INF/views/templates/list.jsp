@@ -1,71 +1,55 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: wojtek
-  Date: 19.10.2020
-  Time: 20:06
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html>
-<head>
-    <title>Templates</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
-</head>
-<body>
-<jsp:include page="/WEB-INF/fragments/menu.jsp" />
+<jsp:include page="/WEB-INF/fragments/header.jsp" />
 
-<h3><a href="<c:url value="/app/templates/add"/>">Add</a></h3>
 
 <c:if test="${not empty param.del}"><h3>${param.del} removed successfully</h3></c:if>
-    <table class="entityList">
-        <thead>
-            <tr>
-                <th>
 
-<%--                    TODO pokazywac id? --%>
+<div class="card shadow mb-4">
 
-                    <a href="${pageContext.request.contextPath}/app/templates?sort=id">#</a>
-                </th>
-                <th>
-                    <a href="${pageContext.request.contextPath}/app/templates?sort=name">Template name</a>
-                </th>
-                <th>
-                    <a href="${pageContext.request.contextPath}/app/templates?sort=description">Description</a>
-                </th>
-                <th>
-                    <a href="${pageContext.request.contextPath}/app/templates?sort=updatedAt">Last updated</a>
-                </th>
-                <th>
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Templates <a class="btn btn-info text-white" href="<c:url value="/app/templates/add"/>">Add new</a></h6>
+    </div>
 
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-        <c:set var="i" value="1" />
-        <c:forEach items="${templates}" var="template">
-            <tr>
-                <td>
-                    ${i}
-                </td>
-                <td>
-                    <a href="<c:url value="/app/templates/${template.id}" />">${template.name}</a>
-                </td>
-                <td>
-                    ${template.description}
-                </td>
-                <td>
-                    ${template.updatedAt}
-                </td>
-                <td>
-                    <a href="<c:url value="/app/templates/edit/${template.id}" />">Edit</a>
-                    <a href="<c:url value="/app/templates/delete/${template.id}" />">Delete</a>
-                </td>
-            </tr>
-        <c:set var="i" value="${i + 1}" />
-        </c:forEach>
-        </tbody>
-    </table>
-</body>
-</html>
+    <div class="card-body">
+
+        <table class="table table-bordered dataTable" id="dataTable">
+            <thead>
+                <tr role="row">
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Last updated</th>
+                    <th></th>
+            </thead>
+
+            <tbody>
+                <c:forEach items="${templates}" var="template">
+                    <tr>
+                        <td>
+                            <a href="<c:url value="/app/templates/${template.id}" />">${template.name}</a>
+                        </td>
+                        <td>${template.description}</td>
+                        <td>${template.createdAt}</td>
+                        <td>
+                            <a class="btn btn-info text-white" href="<c:url value="/app/templates/edit/${template.id}" />">Edit</a>
+                            <a class="btn btn-warning text-white" href="<c:url value="/app/templates/delete/${template.id}" />">Delete</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Call the dataTables jQuery plugin
+    $(document).ready(function() {
+        $('#dataTable').DataTable( {
+            "order": [[2, "desc" ]],
+            "columnDefs": [ { "orderable": false, "targets": 3 } ]
+        });
+    });
+</script>
+
+<jsp:include page="/WEB-INF/fragments/footer.jsp" />

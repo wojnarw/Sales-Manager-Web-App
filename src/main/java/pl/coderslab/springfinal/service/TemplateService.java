@@ -1,5 +1,6 @@
 package pl.coderslab.springfinal.service;
 
+import org.springframework.data.domain.Page;
 import pl.coderslab.springfinal.entity.Creation;
 import pl.coderslab.springfinal.entity.Template;
 import pl.coderslab.springfinal.entity.User;
@@ -14,8 +15,7 @@ public interface TemplateService {
     public Template findOneByName(String name);
     public List<Template> findAll();
     public List<Template> findAllWithUser();
-    public List<Template> findAllWithThisUser(User user, int page, int size, String sortBy);
-    public List<Template> findAllWithThisCreation(Creation creation);
+    public Page<Template> findAllWithThisUser(User user, int page, int size, String sortBy);
 
     public Template findOneByIdWithAllData(Long id);
     public Set<Template> findAllWithAllData();

@@ -62,19 +62,14 @@ public class TemplateServiceDb implements TemplateService {
     }
 
     @Override
-    public List<Template> findAllWithThisUser(User user, int page, int size, String sortBy) {
+    public Page<Template> findAllWithThisUser(User user, int page, int size, String sortBy) {
         Set<String> sortTypes = new HashSet<>(Arrays.asList("id", "name", "description", "updatedAt"));
         if(!sortTypes.contains(sortBy)) sortBy = "id";
         Pageable specificPage = PageRequest.of(page, size, Sort.by(sortBy).ascending());
         Page<Template> templatePage = templateRepository.findAllByUser(user, specificPage);
-        List<Template> templateList = templatePage.getContent();
-        return templateList;
+        return templatePage;
     }
 
-    @Override
-    public List<Template> findAllWithThisCreation(Creation creation) {
-        return null;
-    }
     @Override
     public Template findOneByIdWithAllData(Long id) {
         return templateRepository.findOneByIdWithAllData(id);

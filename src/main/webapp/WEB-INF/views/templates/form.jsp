@@ -1,40 +1,27 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: wojtek
-  Date: 19.10.2020
-  Time: 17:50
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Template creator</title>
-    <link rel="stylesheet" href="/css/styles.css">
 
-</head>
-<body>
-<jsp:include page="/WEB-INF/fragments/menu.jsp" />
+<jsp:include page="/WEB-INF/fragments/header.jsp" />
 
-<h3><a href="<c:url value="/app/templates"/>">Back to list</a></h3>
     <h2>Template ${template.id == null ? "add" : "edit"} form</h2>
-    <form:form method="post" action="${pageContext.request.contextPath}/app/templates/save" modelAttribute="template">
+    <form:form cssClass="w-75" method="post" action="${pageContext.request.contextPath}/app/templates/save" modelAttribute="template">
         <form:hidden path="id" />
         <form:hidden path="updatedAt" />
 
-        <form:label path="name">Template name: </form:label>
-        <form:input path="name" />
+        <form:label path="name" cssClass="w-25">Name: </form:label>
+        <form:input path="name" cssClass="w-75" />
         <form:errors path="name"/>
-
-        <form:label path="description">Template description: </form:label>
-        <form:input path="description" />
+        <br>
+        <form:label path="description" cssClass="w-25">Description: </form:label>
+        <form:input path="description" cssClass="w-75" />
         <form:errors path="description"/>
-
-        <form:textarea path="content"  />
+        <br>
+        <form:label path="content" cssClass="w-25">Content: </form:label>
+        <form:textarea path="content" cssClass="w-100" rows="10" />
         <form:errors path="content" />
-
-        <button type="submit">Save</button>
+        <br>
+        <button type="submit" class="btn btn-block btn-info text-white">Save</button>
     </form:form>
 
     <script type="text/javascript">
@@ -46,5 +33,5 @@
         });
 
     </script>
-</body>
-</html>
+
+<jsp:include page="/WEB-INF/fragments/footer.jsp" />

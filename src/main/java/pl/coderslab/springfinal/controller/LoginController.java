@@ -60,16 +60,16 @@ public class LoginController {
         return modelAndView;
     }
 
-    @GetMapping("/admin/home")
-    public ModelAndView home(){
-        ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findByUserName(auth.getName());
-        modelAndView.addObject("userName", "Welcome " + user.getUsername() + " (" + user.getEmail() + ")");
-        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("admin/home");
-        return modelAndView;
-    }
+//    @GetMapping("/admin/home")
+//    public ModelAndView home(){
+//        ModelAndView modelAndView = new ModelAndView();
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        User user = userService.findByUserName(auth.getName());
+//        modelAndView.addObject("userName", "Welcome " + user.getUsername() + " (" + user.getEmail() + ")");
+//        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
+//        modelAndView.setViewName("admin/home");
+//        return modelAndView;
+//    }
 
 
 }

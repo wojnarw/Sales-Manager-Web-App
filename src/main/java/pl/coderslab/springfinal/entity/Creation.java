@@ -31,8 +31,9 @@ public class Creation {
     @Column(columnDefinition = "DATETIME")
     private String updatedAt;
 
-    @Column(columnDefinition = "TEXT")
-    private String jsonFields;
+//    @Column(columnDefinition = "TEXT")
+    @Transient
+    private HashMap<String, String> fieldList;
 
 //    @Column(columnDefinition = "TEXT")
 //    private String content;
@@ -54,7 +55,7 @@ public class Creation {
                 ", description='" + description + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", updatedAt='" + updatedAt + '\'' +
-                ", jsonFields='" + jsonFields + '\'' +
+//                ", jsonFields='" + jsonFields + '\'' +
 //                ", content='" + content + '\'' +
 //                ", user=" + user +
 //                ", inputFields=" + inputFields +

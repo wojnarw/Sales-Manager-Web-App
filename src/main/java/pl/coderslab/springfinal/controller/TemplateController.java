@@ -1,6 +1,7 @@
 package pl.coderslab.springfinal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,22 +27,20 @@ public class TemplateController {
     }
 
     @GetMapping()
-//    @Transactional
     public String myTemplates(
             Model model,
             @RequestParam(name="p", defaultValue = "0") Integer page,
-            @RequestParam(name="s", defaultValue = "20") Integer size,
-            @RequestParam(name="sort", defaultValue = "id") String sortBy,
+            @RequestParam(name="s", defaultValue = "1000") Integer size,
+            @RequestParam(name="sort", defaultValue = "updatedAt") String sortBy,
             @AuthenticationPrincipal CurrentUser currentUser) {
-        List<Template> templateList = templateService.findAllWithThisUser(currentUser.getUser(), page, size, sortBy);
+        Page<Template> templatePage = templateService.findAllWithThisUser(currentUser.getUser(), page, size, sortBy);
+        List<Template> templateList = templatePage.getContent();
         model.addAttribute("templates", templateList);
+        model.addAttribute("numOfTemplates", templatePage.getTotalElements());
+        model.addAttribute("numOfPages", templatePage.getTotalPages());
+        model.addAttribute("page", page);
         return "templates/list";
     }
-
-//    @ModelAttribute("templates")
-//    public List<Template> templateList() {
-//        return templateService.findAll();
-//    }
 
     @GetMapping("/add")
     public String addTemplate(Model model) {
@@ -57,9 +56,11 @@ public class TemplateController {
         if(id != null) {
             Template originalTemplate = this.templateService.findOneById(id);
             template.setCreatedAt(originalTemplate.getCreatedAt());
-            template.setUser(currentUser.getUser());
         }
-        template.setCreatedAt(template.getUpdatedAt());
+        else {
+            template.setCreatedAt(template.getUpdatedAt());
+        }
+        template.setUser(currentUser.getUser());
         templateService.save(template);
         return "redirect:/app/templates";
     }
@@ -103,5 +104,10 @@ public class TemplateController {
         if(template == null) return "errors/404";
         templateService.delete(template);
         return "redirect:/app/templates?del=" + template.getName();
+    }
+
+    @ModelAttribute("userName")
+    public String userName(@AuthenticationPrincipal CurrentUser currentUser) {
+        return currentUser.getUser().getUsername();
     }
 }

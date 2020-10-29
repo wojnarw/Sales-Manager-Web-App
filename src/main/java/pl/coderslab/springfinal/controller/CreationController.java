@@ -1,6 +1,7 @@
 package pl.coderslab.springfinal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -111,7 +112,13 @@ public class CreationController {
 
     @ModelAttribute("allTemplates")
     public List<Template> templateList(@AuthenticationPrincipal CurrentUser currentUser) {
-        List<Template> templates = this.templateService.findAllWithThisUser(currentUser.getUser(), 0, Integer.MAX_VALUE, "updatedAt");
+        Page<Template> templatePage = this.templateService.findAllWithThisUser(currentUser.getUser(), 0, Integer.MAX_VALUE, "updatedAt");
+        List<Template> templates = templatePage.getContent();
         return templates;
+    }
+
+    @ModelAttribute("userName")
+    public String userName(@AuthenticationPrincipal CurrentUser currentUser) {
+        return currentUser.getUser().getUsername();
     }
 }

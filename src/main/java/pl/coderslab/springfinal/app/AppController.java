@@ -2,13 +2,16 @@ package pl.coderslab.springfinal.app;
 
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.springfinal.entity.Creation;
 import pl.coderslab.springfinal.entity.Template;
 import pl.coderslab.springfinal.service.CreationService;
+import pl.coderslab.springfinal.service.CurrentUser;
 import pl.coderslab.springfinal.service.TemplateService;
 import pl.coderslab.springfinal.service.UserService;
 
@@ -36,5 +39,10 @@ public class AppController {
         model.addAttribute("lastFiveTemplates", lastFiveTemplates);
         model.addAttribute("lastFiveCreations", lastFiveCreations);
         return "app";
+    }
+
+    @ModelAttribute("userName")
+    public String userName(@AuthenticationPrincipal CurrentUser currentUser) {
+        return currentUser.getUser().getUsername();
     }
 }

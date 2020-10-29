@@ -39,17 +39,24 @@
 <%--            <input type="text" id="${field.key}" value="${field.value}" path="inputFields"><br />--%>
 <%--        </c:forEach>--%>
             <hr>
-        <c:forEach items="${creation.inputFields}" var="field">
+        <c:forEach items="${creation.inputFields}" var="field" varStatus="status">
             <label for="${field.value}" class="field-name">${field.name}</label>
-            <input type="hidden" id="${field.name}" value="${field.name}" name="name" path="creation.inputFields"><br />
-            <input type="text" id="${field.value}" value="${field.value}" name="value" path="creation.inputFields"><br />
+            <input type="hidden" id="${field.name}_${status.index}" value="${field.name}" name="fieldList${[status.index]}.key" path="creation.inputFields"><br />
+            <input type="text" id="${field.value}_${status.index}" value="${field.value}" name="fieldList${[status.index]}.value" path="creation.inputFields"><br />
         </c:forEach>
             <hr>
-        <c:forEach items="${inputFields}" var="field">
-            <label for="${field.value}" class="field-name">${field.name}</label>
-            <input type="hidden" id="${field.name}" value="${field.name}" name="name" path="inputFields"><br />
-            <input type="text" id="${field.value}" value="${field.value}" name="value" path="inputFields"><br />
-        </c:forEach>
+<%--        <c:forEach items="${inputFields}" var="field">--%>
+<%--            <label for="${field.value}" class="field-name">${field.name}</label>--%>
+<%--            <input type="hidden" id="${field.name}" value="${field.name}" name="name" path="inputFields"><br />--%>
+<%--            <input type="text" id="${field.value}" value="${field.value}" name="value" path="inputFields"><br />--%>
+<%--        </c:forEach>--%>
+
+<%--        <form:form modelAttribute="inputFields" action="/">--%>
+<%--        <c:forEach var="field" items="${inputFields}" varStatus="status">--%>
+<%--            <form:input path="field[${status.index}].name" name="FName" id="FName" value="" />--%>
+<%--            <form:input path="field[${status.index}].value" name="LName" id="LName" value="" />--%>
+<%--        </c:forEach>--%>
+<%--        </form:form>--%>
         </div>
 
         <button type="submit">Save</button>

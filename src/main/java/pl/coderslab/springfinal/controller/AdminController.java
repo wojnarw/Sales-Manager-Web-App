@@ -1,10 +1,12 @@
 package pl.coderslab.springfinal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springfinal.entity.User;
+import pl.coderslab.springfinal.service.CurrentUser;
 import pl.coderslab.springfinal.service.TemplateService;
 import pl.coderslab.springfinal.service.UserService;
 
@@ -63,4 +65,8 @@ public class AdminController {
 //    public String userList() {
 //        List<User> users = this.userService.findAllWithAllData();
 //    }
+    @ModelAttribute("userName")
+    public String userName(@AuthenticationPrincipal CurrentUser currentUser) {
+        return currentUser.getUser().getUsername();
+    }
 }

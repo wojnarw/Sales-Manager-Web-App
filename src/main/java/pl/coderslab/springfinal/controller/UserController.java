@@ -14,7 +14,7 @@ import pl.coderslab.springfinal.service.CurrentUser;
 import pl.coderslab.springfinal.service.UserService;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/app/user")
 public class UserController {
     private UserService userService;
 
