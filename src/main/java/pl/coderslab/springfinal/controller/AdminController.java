@@ -42,8 +42,9 @@ public class AdminController {
     @GetMapping("/user/ban/{id}")
     public String toggleBan(@PathVariable long id) {
         User user = this.userService.findOneById(id);
-        if(user.getRole().equals("user")) user.setRole("banned");
-        else user.setRole("user");
+//        if(user.getRole().equals("user")) user.setRole("banned");
+//        else user.setRole("user");
+        user.setEnabled(!user.getEnabled());
         this.userService.save(user);
         return "redirect:/admin/users";
     }
@@ -54,6 +55,7 @@ public class AdminController {
         model.addAttribute("user", user);
         int numOfTemplates = this.templateService.countAllByUserId(id);
         model.addAttribute("numOfTemplates", numOfTemplates);
+        //TODO number of creations
         return "admin/user/details";
     }
 

@@ -16,19 +16,20 @@
 <body>
     <h3><a href="<c:url value="/admin/users"/>">Back to list</a></h3>
 
-    <c:if test="${delete}">
-        <h2>Are you sure you want to delete this template?</h2>
-        <form:form method="post" action="/template/delete/${template.id}">
-            <button type="submit">Delete</button>
-            <a href="<c:url value="/template" />">Cancel</a>
-        </form:form>
-    </c:if>
     <h3>User details</h3>
     <div>ID: ${user.id}</div>
     <div>Username: ${user.username}</div>
     <div>E-mail: ${user.email}</div>
     <div>Registered on: ${user.registeredOn}</div>
-    <div >Role: <span class="${user.role}">${user.role}</span></div>
+    <div>Enabled:
+        <span <c:if test="${not user.enabled}">class="banned"</c:if>>${user.enabled}</span>
+    </div>
+    <div>Roles:
+        <c:forEach items="${user.roles}" var="role" varStatus="status">
+            <span>${role.name}</span><c:if test="${not status.last}">, </c:if>
+        </c:forEach>
+
+    </div>
     <div>Templates created: ${numOfTemplates}</div>
     <div>
         Templates:

@@ -51,7 +51,7 @@
                     ${user.id}
                 </td>
                 <td>
-                    <a <c:if test="${user.role == 'banned'}">class="banned"</c:if> href="<c:url value="/admin/user/${user.id}" />">${user.username}</a>
+                    <a <c:if test="${not user.enabled}">class="banned"</c:if> href="<c:url value="/admin/user/${user.id}" />">${user.username}</a>
                 </td>
                 <td>
                     ${user.email}
@@ -61,10 +61,10 @@
                 </td>
                 <td>
                     <a href="<c:url value="/admin/user/ban/${user.id}" />">
-                        <c:if test="${user.role == 'user'}">
+                        <c:if test="${user.enabled}">
                             Ban this user
                         </c:if>
-                        <c:if test="${user.role == 'banned'}">
+                        <c:if test="${not user.enabled}">
                             Unban
                         </c:if>
                     </a>
