@@ -30,9 +30,17 @@ public class CreationController {
         this.templateService = templateService;
     }
 
-    @GetMapping("")
-    public String showMyCreations(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
-        List<Creation> creations = creationService.findAllByUser(currentUser.getUser());
+    @GetMapping()
+    public String showMyCreations(
+            Model model,
+            @RequestParam(name="p", defaultValue = "0") Integer page,
+            @RequestParam(name="s", defaultValue = "20") Integer size,
+            @RequestParam(name="sort", defaultValue = "id") String sortBy,
+            @AuthenticationPrincipal CurrentUser currentUser) {
+
+        //page, size, sortBy
+
+        List<Creation> creations = this.creationService.findAllByUser(currentUser.getUser());//, page, size);
         model.addAttribute("creations", creations);
         return "creation/list";
     }
@@ -86,23 +94,24 @@ public class CreationController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteCreationConfirm(@PathVariable long id, Model model){
-        Creation creation = creationService.findOneByIdWithAllData(id);
+    public String deleteCreationConfirm(@PathVariable long id, Model model, @AuthenticationPrincipal CurrentUser currentUser){
+        Creation creation = creationService.findOneByIdAndUser(id, currentUser.getUser());
+        if(creation == null) return "errors/404";
         model.addAttribute("creation", creation);
         model.addAttribute("delete", true);
         return "creation/details";
     }
     @PostMapping("/delete/{id}")
-    public String deleteCreation(@PathVariable long id, Model model) {
-        Creation creation = creationService.findOneById(id);
+    public String deleteCreation(@PathVariable long id, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+        Creation creation = creationService.findOneByIdAndUser(id, currentUser.getUser());
+        if(creation == null) return "errors/404";
         creationService.delete(creation);
         return "redirect:/app/creation?del=" + creation.getName();
     }
 
-//TODO zmienic na templatki danego uzytkownika
     @ModelAttribute("allTemplates")
-    public List<Template> templateList() {
-        List<Template> templates = this.templateService.findAll();
+    public List<Template> templateList(@AuthenticationPrincipal CurrentUser currentUser) {
+        List<Template> templates = this.templateService.findAllWithThisUser(currentUser.getUser(), 0, Integer.MAX_VALUE, "updatedAt");
         return templates;
     }
 }

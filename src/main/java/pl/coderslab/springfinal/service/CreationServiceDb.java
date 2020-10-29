@@ -1,6 +1,10 @@
 package pl.coderslab.springfinal.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.coderslab.springfinal.entity.Creation;
 import pl.coderslab.springfinal.entity.Template;
@@ -81,7 +85,10 @@ public class CreationServiceDb implements CreationService {
     }
 
     @Override
-    public Set<Creation> getLastFive() {
-        return this.creationRepository.getLastFive();
+    public List<Creation> getLastFive() {
+        Pageable sortedById = PageRequest.of(0, 5, Sort.by("id").descending());
+        Page<Creation> creationPage = creationRepository.findAll(sortedById);
+        List<Creation> creationList = creationPage.getContent();
+        return creationList;
     }
 }

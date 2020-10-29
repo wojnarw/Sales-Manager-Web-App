@@ -23,8 +23,5 @@ public interface CreationRepository extends JpaRepository<Creation,Long> {
 
     List<Creation> findAllByUser(User user);
     Creation findOneByIdAndUser(Long id, User user);
-    //TODO change to pageable
-    @Query(value = "SELECT * FROM creations ORDER BY creations.id DESC LIMIT 5",
-            nativeQuery = true)
-    Set<Creation> getLastFive();
+
 }

@@ -25,5 +25,5 @@ public interface CreationService {
 
     List<Creation> findAllByUser(User user);
     Creation findOneByIdAndUser(Long id, User user);
-    Set<Creation> getLastFive();
+    List<Creation> getLastFive();
 }

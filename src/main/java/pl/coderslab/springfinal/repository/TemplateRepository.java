@@ -1,5 +1,7 @@
 package pl.coderslab.springfinal.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,11 +20,8 @@ public interface TemplateRepository extends JpaRepository<Template, Long> {
     @Query("select t from Template t left join fetch t.user u where t.id = :id") //  join fetch t.publications p")
     Template findOneByIdWithAllData(@Param("id") Long id);
     int countAllByUserId(long id);
-    //TODO change to pageable
-    @Query(value = "SELECT * FROM templates ORDER BY templates.id DESC LIMIT 5",
-            nativeQuery = true)
-    Set<Template> getLastFive();
+
     Template findOneByIdAndUser(Long id, User user);
-    List<Template> findAllByUser(User user);
+    Page<Template> findAllByUser(User user, Pageable pageable);
 
 }

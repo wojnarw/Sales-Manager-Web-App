@@ -13,17 +13,14 @@ public interface TemplateService {
     public Template findOneById(Long id);
     public Template findOneByName(String name);
     public List<Template> findAll();
-//    public List<Template> getAllByPage(int page);
-//    public List<Template> findAll(String sortType);
     public List<Template> findAllWithUser();
-    public List<Template> findAllWithThisUser(User user);
+    public List<Template> findAllWithThisUser(User user, int page, int size, String sortBy);
     public List<Template> findAllWithThisCreation(Creation creation);
 
     public Template findOneByIdWithAllData(Long id);
     public Set<Template> findAllWithAllData();
     int countAllByUserId(long id);
-    Set<Template> getLastFive();
+    List<Template> getLastFive();
     Template findOneByIdAndUser(Long id, User user);
-    //find by created date
-    //find by updated date
+
 }

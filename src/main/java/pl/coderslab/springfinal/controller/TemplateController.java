@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.springfinal.entity.Creation;
 import pl.coderslab.springfinal.entity.Template;
 import pl.coderslab.springfinal.service.CurrentUser;
 import pl.coderslab.springfinal.service.TemplateService;
@@ -26,8 +27,13 @@ public class TemplateController {
 
     @GetMapping()
 //    @Transactional
-    public String myTemplates(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
-        List<Template> templateList = this.templateService.findAllWithThisUser(currentUser.getUser());
+    public String myTemplates(
+            Model model,
+            @RequestParam(name="p", defaultValue = "0") Integer page,
+            @RequestParam(name="s", defaultValue = "20") Integer size,
+            @RequestParam(name="sort", defaultValue = "id") String sortBy,
+            @AuthenticationPrincipal CurrentUser currentUser) {
+        List<Template> templateList = templateService.findAllWithThisUser(currentUser.getUser(), page, size, sortBy);
         model.addAttribute("templates", templateList);
         return "templates/list";
     }

@@ -124,5 +124,6 @@
     </c:forEach>
     </tbody>
 </table>
-</body>
-</html>
+
+
+<jsp:include page="/WEB-INF/fragments/footer.jsp" />

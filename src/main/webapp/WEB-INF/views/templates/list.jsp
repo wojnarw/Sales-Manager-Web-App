@@ -23,16 +23,19 @@
         <thead>
             <tr>
                 <th>
-                    #
+
+<%--                    TODO pokazywac id? --%>
+
+                    <a href="${pageContext.request.contextPath}/app/templates?sort=id">#</a>
                 </th>
                 <th>
-                    Template name
+                    <a href="${pageContext.request.contextPath}/app/templates?sort=name">Template name</a>
                 </th>
                 <th>
-                    Description
+                    <a href="${pageContext.request.contextPath}/app/templates?sort=description">Description</a>
                 </th>
                 <th>
-                    Last updated
+                    <a href="${pageContext.request.contextPath}/app/templates?sort=updatedAt">Last updated</a>
                 </th>
                 <th>
 

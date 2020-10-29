@@ -18,7 +18,7 @@
 <jsp:include page="/WEB-INF/fragments/menu.jsp" />
 
 <h2>Creation ${creation.id == null ? "add" : "edit"} form</h2>
-<form:form method="post" action="${pageContext.request.contextPath}/creations/save" modelAttribute="creation">
+<form:form method="post" action="${pageContext.request.contextPath}/app/creations/save" modelAttribute="creation">
     <div id="creationHeader">
         <form:hidden path="id" />
 
@@ -38,7 +38,14 @@
 <%--            <label for="${field.key}" class="field-name">${field.key}</label>--%>
 <%--            <input type="text" id="${field.key}" value="${field.value}" path="inputFields"><br />--%>
 <%--        </c:forEach>--%>
+            <hr>
         <c:forEach items="${creation.inputFields}" var="field">
+            <label for="${field.value}" class="field-name">${field.name}</label>
+            <input type="hidden" id="${field.name}" value="${field.name}" name="name" path="creation.inputFields"><br />
+            <input type="text" id="${field.value}" value="${field.value}" name="value" path="creation.inputFields"><br />
+        </c:forEach>
+            <hr>
+        <c:forEach items="${inputFields}" var="field">
             <label for="${field.value}" class="field-name">${field.name}</label>
             <input type="hidden" id="${field.name}" value="${field.name}" name="name" path="inputFields"><br />
             <input type="text" id="${field.value}" value="${field.value}" name="value" path="inputFields"><br />

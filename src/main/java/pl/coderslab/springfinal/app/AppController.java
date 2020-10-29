@@ -31,8 +31,8 @@ public class AppController {
 
     @GetMapping()
     public String userLanding(Model model) {
-        Set<Template> lastFiveTemplates = this.templateService.getLastFive();
-        Set<Creation> lastFiveCreations = this.creationService.getLastFive();
+        List<Template> lastFiveTemplates = this.templateService.getLastFive();
+        List<Creation> lastFiveCreations = this.creationService.getLastFive();
         model.addAttribute("lastFiveTemplates", lastFiveTemplates);
         model.addAttribute("lastFiveCreations", lastFiveCreations);
         return "app";
