@@ -4,7 +4,7 @@
 
 <jsp:include page="/WEB-INF/fragments/header.jsp" />
 
-    <h2>Template ${template.id == null ? "add" : "edit"} form</h2>
+    <h2>${template.id == null ? "Add new" : "Edit existing"}</h2>
     <form:form cssClass="w-75" method="post" action="${pageContext.request.contextPath}/app/templates/save" modelAttribute="template">
         <form:hidden path="id" />
         <form:hidden path="updatedAt" />
@@ -23,7 +23,6 @@
         <form:textarea path="content" cssClass="w-100" rows="10" />
         <br>
         <form:errors path="content" cssClass="text-danger" />
-        <br>
         <button type="submit" class="btn btn-block btn-info text-white">Save</button>
     </form:form>
 

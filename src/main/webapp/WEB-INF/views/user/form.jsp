@@ -1,39 +1,39 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: wojtek
-  Date: 21.10.2020
-  Time: 20:42
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Account details</title>
-</head>
-<body>
-    <h3><a href="<c:url value="/app"/>">Back to dashboard</a></h3>
-    <h2>Account details</h2>
+
+<jsp:include page="/WEB-INF/fragments/header.jsp" />
+
+<h2>Account details</h2>
+<hr>
+
     <form:form method="post" action="${pageContext.request.contextPath}/app/user/save" modelAttribute="user">
         <form:hidden path="id" />
-        <form:label path="username">Username: </form:label>
-        <form:input path="username"/>
-        <form:errors path="username"/>
+        <div>
+            <form:label path="username" cssClass="w-25 text-right">Username: </form:label>
+            <form:input path="username" cssClass="w-25"/>
+            <form:errors path="username" cssClass="text-danger" />
+        </div>
+        <div>
+            <form:label path="email" cssClass="w-25 text-right">E-mail: </form:label>
+            <form:input path="email" cssClass="w-25"/>
+            <form:errors path="email" cssClass="text-danger" />
+        </div>
+        <div>
+            <form:label path="password" cssClass="w-25 text-right">New password: </form:label>
+            <form:password path="password" cssClass="w-25" autocomplete="false"/>
+            <form:errors path="password" cssClass="text-danger" />
+        </div>
+        <div>
+            <label for="rePassword" class="w-25 text-right">Retype password: </label>
+            <input type="password" id="rePassword" class="w-25" autocomplete="false"/>
+            <span id="passwordValidity" class="text-danger"></span>
+        </div>
+        <div>
+            <label for="formSubmit" class="w-25 text-right">&nbsp;</label>
+            <input type="submit" id="formSubmit"class="w-25 btn btn-info" value="Save" disabled="true"/>
+        </div>
 
-        <form:label path="email">E-mail: </form:label>
-        <form:input path="email" />
-        <form:errors path="email"/>
-
-        <form:label path="password">New password: </form:label>
-        <form:password path="password" />
-        <form:errors path="password"/>
-
-        <label for="rePassword">Retype password: </label>
-        <input type="password" id="rePassword" />
-        <span id="passwordValidity"></span>
-
-        <button type="submit" id="formSubmit">Save</button>
     </form:form>
 
     <c:if test="${not empty result}">
@@ -57,5 +57,5 @@
         }
         rePasswordEl.addEventListener("keyup", validatePassword);
     </script>
-</body>
-</html>
+
+<jsp:include page="/WEB-INF/fragments/footer.jsp" />

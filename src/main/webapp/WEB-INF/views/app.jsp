@@ -3,10 +3,10 @@
 
 <jsp:include page="/WEB-INF/fragments/header.jsp" />
 
-<div class="card shadow mb-4">
+<div class="card shadow mb-4 mt-4">
 
     <div class="card-header py-3">
-        <h2 class="m-0 font-weight-bold text-primary">Last templates
+        <h2 class="m-0 font-weight-bold text-gray-700">Last templates
             <a href="${pageContext.request.contextPath}/app/templates/add" class="btn btn-success btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>
@@ -70,7 +70,7 @@
     </div>
 
     <div class="card-header py-3">
-        <h2 class="m-0 font-weight-bold text-primary">Last creations
+        <h2 class="m-0 font-weight-bold text-gray-700">Last creations
             <a href="${pageContext.request.contextPath}/app/creations/add" class="btn btn-success btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>

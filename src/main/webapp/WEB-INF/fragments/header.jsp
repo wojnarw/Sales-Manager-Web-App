@@ -38,13 +38,14 @@
         <div id="content">
 
             <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-3 static-top shadow">
 
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
 
+                <h1 class="m-4 text-gray-300 m-0 font-weight-bold">${title}</h1>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">

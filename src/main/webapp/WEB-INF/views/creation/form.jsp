@@ -1,23 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: wojtek
-  Date: 25.10.2020
-  Time: 21:12
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Title</title>
-    <link rel="stylesheet" href="/css/styles.css">
-<%--    <link rel="stylesheet" href="/css/sb-admin-2.min.css">--%>
-</head>
-<body>
-<jsp:include page="/WEB-INF/fragments/menu.jsp" />
 
-<h2>Creation ${creation.id == null ? "add" : "edit"} form</h2>
+<jsp:include page="/WEB-INF/fragments/header.jsp" />
+
+<h2>${creation.id == null ? "Add new" : "Edit existing"}</h2>
 <form:form method="post" action="${pageContext.request.contextPath}/app/creations/save" modelAttribute="creation">
     <div id="creationHeader">
         <form:hidden path="id" />
@@ -174,5 +162,5 @@
     });
 
 </script>
-</body>
-</html>
+
+<jsp:include page="/WEB-INF/fragments/footer.jsp" />
