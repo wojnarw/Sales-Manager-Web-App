@@ -52,3 +52,12 @@ table.entityList td {
     background-position:center;
     background-size:cover;
 }
+.text-primary{
+    color:#36b9cc!important;
+}
+a.text-primary:focus,a.text-primary:hover{
+    color:#258391!important;
+}
+a {
+    color:#36b9cc;
+}
