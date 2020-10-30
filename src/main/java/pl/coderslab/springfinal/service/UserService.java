@@ -16,4 +16,5 @@ public interface UserService {
     Set<User> getLastFive();
     List<User> getAll(String sortType);
     User findByUserName(String username);
+    public void userToggleBan(Long id);
 }

@@ -2,14 +2,13 @@ package pl.coderslab.springfinal.controller;
 
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springfinal.entity.User;
 import pl.coderslab.springfinal.service.CurrentUser;
 import pl.coderslab.springfinal.service.UserService;
@@ -47,5 +46,12 @@ public class UserController {
         this.userService.save(user);
         model.addAttribute("result", "Data saved successfully!");
         return "user/form";
+    }
+
+    @ModelAttribute("isAdmin")
+    public Boolean isAdmin(@AuthenticationPrincipal CurrentUser currentUser) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //has role ADMIN?
+        return auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"));
     }
 }

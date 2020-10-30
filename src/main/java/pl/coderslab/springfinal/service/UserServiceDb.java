@@ -117,4 +117,13 @@ public class UserServiceDb implements UserService {
     public User findByUserName(String username) {
         return this.userRepository.findByUsername(username);
     }
+
+    @Override
+    public void userToggleBan(Long id) {
+        User user = this.userRepository.findById(id).orElse(null);
+        if(user != null) {
+            Boolean newState = !user.getEnabled();
+            this.userRepository.updateEnabled(newState, user.getId());
+        }
+    }
 }

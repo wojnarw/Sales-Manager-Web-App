@@ -2,7 +2,9 @@ package pl.coderslab.springfinal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -125,5 +127,12 @@ public class CreationController {
     @ModelAttribute("title")
     public String title() {
         return "Creations";
+    }
+
+    @ModelAttribute("isAdmin")
+    public Boolean isAdmin(@AuthenticationPrincipal CurrentUser currentUser) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //has role ADMIN?
+        return auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"));
     }
 }

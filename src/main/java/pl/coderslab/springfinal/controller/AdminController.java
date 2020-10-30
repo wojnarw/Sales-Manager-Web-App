@@ -1,15 +1,19 @@
 package pl.coderslab.springfinal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springfinal.entity.User;
+import pl.coderslab.springfinal.service.CreationService;
 import pl.coderslab.springfinal.service.CurrentUser;
 import pl.coderslab.springfinal.service.TemplateService;
 import pl.coderslab.springfinal.service.UserService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
 
@@ -18,12 +22,13 @@ import java.util.Set;
 public class AdminController {
     private UserService userService;
     private TemplateService templateService;
-//    private PublicationService publicationService;
+    private CreationService creationService;
 
     @Autowired
-    public AdminController(UserService userService, TemplateService templateService) {
+    public AdminController(UserService userService, TemplateService templateService, CreationService creationService) {
         this.userService = userService;
         this.templateService = templateService;
+        this.creationService = creationService;
     }
 
     @GetMapping()
@@ -42,13 +47,10 @@ public class AdminController {
     }
 
     @GetMapping("/user/ban/{id}")
+    @Transactional
     public String toggleBan(@PathVariable long id) {
-        User user = this.userService.findOneById(id);
-//        if(user.getRole().equals("user")) user.setRole("banned");
-//        else user.setRole("user");
-        user.setEnabled(!user.getEnabled());
-        this.userService.save(user);
-        return "redirect:/admin/users";
+        this.userService.userToggleBan(id);
+        return "redirect:/admin/user/" + id;
     }
 
     @GetMapping("/user/{id}")
@@ -57,16 +59,25 @@ public class AdminController {
         model.addAttribute("user", user);
         int numOfTemplates = this.templateService.countAllByUserId(id);
         model.addAttribute("numOfTemplates", numOfTemplates);
-        //TODO number of creations
+        int numOfCreations = this.creationService.countAllByUserId(id);
+        model.addAttribute("numOfCreations", numOfCreations);
         return "admin/user/details";
     }
 
-//    @ModelAttribute("users")
-//    public String userList() {
-//        List<User> users = this.userService.findAllWithAllData();
-//    }
     @ModelAttribute("userName")
     public String userName(@AuthenticationPrincipal CurrentUser currentUser) {
         return currentUser.getUser().getUsername();
+    }
+
+    @ModelAttribute("title")
+    public String title() {
+        return "Admin panel";
+    }
+
+    @ModelAttribute("isAdmin")
+    public Boolean isAdmin(@AuthenticationPrincipal CurrentUser currentUser) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //has role ADMIN?
+        return auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"));
     }
 }
