@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -66,11 +67,22 @@
     </li>
 
     <c:if test="${isAdmin}">
-    <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Admin panel</span></a>
-    </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Admin</span>
+            </a>
+            <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+<%--                    <a class="collapse-item" href="${pageContext.request.contextPath}/admin">Dashboard</a>--%>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/admin/users">User list</a>
+                </div>
+            </div>
+        </li>
     </c:if>
 
     <!-- Divider -->

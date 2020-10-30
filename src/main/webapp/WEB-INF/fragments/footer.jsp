@@ -44,6 +44,9 @@
     </div>
 </div>
 
+<%--JS cookie library--%>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
 <!-- Bootstrap core JavaScript-->
 <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
@@ -54,5 +57,27 @@
 <script src="${pageContext.request.contextPath}/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+<script>
+    $(".sidebar").on('shown.bs.collapse', function ()
+    {
+        var active = $(this).attr('id');
+        Cookies.set('active', '1')
+    });
+
+    $(".side-navbar").on('hidden.bs.collapse', function ()
+    {
+        var active = $(this).attr('id');
+        Cookies.remove('active')
+    });
+
+    $(document).ready(function(){
+        let panel = Cookies.get('active');
+        console.log(panel);
+        if ($("#"+panel).hasClass('shrink')) // check if this is a panel
+        {
+            $("#"+panel).collapse("show");
+        }
+    });
+</script>
 </body>
 </html>

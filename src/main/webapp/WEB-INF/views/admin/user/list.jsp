@@ -1,43 +1,34 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: wojtek
-  Date: 20.10.2020
-  Time: 21:34
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-<a href="<c:url value="/admin"/>">Back to admin dashboard</a>
-    <table class="entityList">
-        <thead>
-        <tr>
-            <td colspan="5">
-                User list
-            </td>
-        </tr>
-        <tr>
-            <th>
-                <a href="<c:url value="/admin/users?sort=idAsc" />">ID</a>
-            </th>
-            <th>
-                <a href="<c:url value="/admin/users?sort=usernameAsc" />">Username</a>
-            </th>
-            <th>
-                <a href="<c:url value="/admin/users?sort=emailAsc" />">E-mail</a>
-            </th>
-            <th>
-                <a href="<c:url value="/admin/users?sort=dateAsc" />">Registered on</a>
-            </th>
-            <th>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-            </th>
-        </tr>
+<jsp:include page="/WEB-INF/fragments/header.jsp" />
+
+<div class="card shadow mb-4">
+
+    <div class="card-header py-3">
+        <h2 class="m-0 font-weight-bold text-info">
+            User list
+        </h2>
+    </div>
+
+    <div class="card-body">
+
+    <table class="table table-bordered dataTable" id="dataTable">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Username
+                </th>
+                <th>
+                    E-mail
+                </th>
+                <th>
+                    Registered on
+                </th>
+            </tr>
         </thead>
         <tbody>
         <c:forEach items="${users}" var="user">
@@ -54,19 +45,19 @@
                 <td>
                         ${user.registeredOn}
                 </td>
-                <td>
-                    <a href="<c:url value="/admin/user/ban/${user.id}" />">
-                        <c:if test="${user.enabled}">
-                            Ban this user
-                        </c:if>
-                        <c:if test="${not user.enabled}">
-                            Unban
-                        </c:if>
-                    </a>
-                </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-</body>
-</html>
+
+
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+            $('#dataTable').DataTable( {
+                "order": [[3, "desc" ]]
+            });
+        });
+    </script>
+
+<jsp:include page="/WEB-INF/fragments/footer.jsp" />
