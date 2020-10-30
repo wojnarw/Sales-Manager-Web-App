@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -63,6 +64,14 @@
             <i class="fas fa-fw fa-sign-out-alt"></i>
             <span>Logout</span></a>
     </li>
+
+    <c:if test="${isAdmin}">
+    <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Admin panel</span></a>
+    </li>
+    </c:if>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

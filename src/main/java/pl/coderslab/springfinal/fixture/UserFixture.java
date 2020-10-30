@@ -31,32 +31,28 @@ public class UserFixture {
 
     public void createDataInDb() {
         //user to log in
-        User user1 = new User();
-        user1.setUsername("user");
-//        String salt = BCrypt.gensalt();
-        user1.setPassword("12345");//(BCrypt.hashpw("12345",salt));
-//        user1.setRole("user");
-        user1.setEmail("a@a.pl");
-//        user1.setEnabled(true);
-//        Set<Role> roles = new HashSet<>();
-//        Role role = new Role();
-//        role.setName("ROLE_USER");
-//        roles.add(role);
-//        user1.setRoles(roles);
-        userService.save(user1);
+//        User user1 = new User();
+//        user1.setUsername("user");
+//        user1.setPassword("12345");
+//        user1.setEmail("a@a.pl");
+////        user1.setEnabled(true);
+////        Set<Role> roles = new HashSet<>();
+////        Role role = new Role();
+////        role.setName("ROLE_USER");
+////        roles.add(role);
+////        user1.setRoles(roles);
+//        userService.save(user1);
 
         User admin = new User();
         admin.setUsername("admin");
-//        salt = BCrypt.gensalt();
-        admin.setPassword("12345");//(BCrypt.hashpw("12345",salt));
-//        admin.setRole("admin");
+        admin.setPassword("1234567");
         admin.setEmail("a2@a.pl");
 //        admin.setEnabled(true);
-//        Set<Role> roles2 = new HashSet<>();
-//        Role role2 = new Role();
-//        role2.setName("ROLE_ADMIN");
-//        roles2.add(role2);
-//        admin.setRoles(roles2);
+        Set<Role> roles2 = new HashSet<>();
+        Role role2 = new Role();
+        role2.setName("ROLE_ADMIN");
+        roles2.add(role2);
+        admin.setRoles(roles2);
         userService.save(admin);
 
         Random random = new Random();
