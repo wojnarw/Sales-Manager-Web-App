@@ -43,8 +43,7 @@ public class LoginController {
         ModelAndView modelAndView = new ModelAndView();
         User userExists = userService.findByUserName(user.getUsername());
         if (userExists != null) {
-            bindingResult
-                    .rejectValue("userName", "error.user",
+            bindingResult.rejectValue("userName", "error.user",
                             "There is already a user registered with the user name provided");
         }
         if (bindingResult.hasErrors()) {

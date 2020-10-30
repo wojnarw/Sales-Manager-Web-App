@@ -31,13 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
     }
-//    @Override
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication().dataSource(dataSource)
-//                .passwordEncoder(passwordEncoder())
-//                .withUser("admin2").password(passwordEncoder().encode("admin2"))
-//                .roles("ADMIN", "USER");
-//    }
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         web

@@ -35,7 +35,7 @@ public class UserFixture {
         user1.setUsername("user");
 //        String salt = BCrypt.gensalt();
         user1.setPassword("12345");//(BCrypt.hashpw("12345",salt));
-        user1.setRole("user");
+//        user1.setRole("user");
         user1.setEmail("a@a.pl");
 //        user1.setEnabled(true);
 //        Set<Role> roles = new HashSet<>();
@@ -49,7 +49,7 @@ public class UserFixture {
         admin.setUsername("admin");
 //        salt = BCrypt.gensalt();
         admin.setPassword("12345");//(BCrypt.hashpw("12345",salt));
-        admin.setRole("admin");
+//        admin.setRole("admin");
         admin.setEmail("a2@a.pl");
 //        admin.setEnabled(true);
 //        Set<Role> roles2 = new HashSet<>();
@@ -87,9 +87,9 @@ public class UserFixture {
             user.setRegisteredOn(fakeDateTime);
             year++;
 
-            int chance = random.nextInt(4);
-            if(chance > 0) user.setRole("user");
-            else user.setRole("banned");
+//            int chance = random.nextInt(4);
+//            if(chance > 0) user.setRole("user");
+//            else user.setRole("banned");
 
 //            roles = new HashSet<>();
 //            role = new Role();

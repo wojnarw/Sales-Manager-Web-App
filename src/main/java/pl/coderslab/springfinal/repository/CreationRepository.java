@@ -1,5 +1,7 @@
 package pl.coderslab.springfinal.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,8 +22,10 @@ public interface CreationRepository extends JpaRepository<Creation,Long> {
     @Query("select c from Creation c left join fetch c.user left join fetch c.inputFields where c.id = :id") //  join fetch t.publications p")
     Creation findOneByIdWithAllData(@Param("id") Long id);
     int countAllByUserId(Long id);
+    //List<Creation> findAllWithThisTemplate(Template template);
 
-    List<Creation> findAllByUser(User user);
     Creation findOneByIdAndUser(Long id, User user);
+    Page<Creation> findAllByUser(User user, Pageable pageable);
+    List<Creation> findAllByUser(User user);
 
 }

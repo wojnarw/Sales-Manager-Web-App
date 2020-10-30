@@ -17,7 +17,7 @@ public interface CreationService {
 //    public List<Creation> getAllByPage(int page);
     //    public List<Creation> findAll(String sortType);
     public List<Creation> findAllWithThisUser(User user);
-    public List<Creation> findAllWithThisTemplate(Template template);
+    //public List<Creation> findAllWithThisTemplate(Template template);
 
     public Creation findOneByIdWithAllData(Long id);
     public Set<Creation> findAllWithAllData();
@@ -25,5 +25,5 @@ public interface CreationService {
 
     List<Creation> findAllByUser(User user);
     Creation findOneByIdAndUser(Long id, User user);
-    List<Creation> getLastFive();
+    List<Creation> getLastFive(User user);
 }

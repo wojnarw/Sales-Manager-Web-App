@@ -121,4 +121,9 @@ public class CreationController {
     public String userName(@AuthenticationPrincipal CurrentUser currentUser) {
         return currentUser.getUser().getUsername();
     }
+
+    @ModelAttribute("title")
+    public String title() {
+        return "Creations";
+    }
 }

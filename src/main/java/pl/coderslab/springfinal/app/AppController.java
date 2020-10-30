@@ -33,9 +33,9 @@ public class AppController {
     }
 
     @GetMapping()
-    public String userLanding(Model model) {
-        List<Template> lastFiveTemplates = this.templateService.getLastFive();
-        List<Creation> lastFiveCreations = this.creationService.getLastFive();
+    public String userLanding(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+        List<Template> lastFiveTemplates = this.templateService.getLastFive(currentUser.getUser());
+        List<Creation> lastFiveCreations = this.creationService.getLastFive(currentUser.getUser());
         model.addAttribute("lastFiveTemplates", lastFiveTemplates);
         model.addAttribute("lastFiveCreations", lastFiveCreations);
         return "app";
@@ -44,5 +44,10 @@ public class AppController {
     @ModelAttribute("userName")
     public String userName(@AuthenticationPrincipal CurrentUser currentUser) {
         return currentUser.getUser().getUsername();
+    }
+
+    @ModelAttribute("title")
+    public String title() {
+        return "Dashboard";
     }
 }

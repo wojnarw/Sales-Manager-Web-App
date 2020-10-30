@@ -67,15 +67,6 @@ public class TemplateController {
         templateService.save(template);
         return "redirect:/app/templates";
     }
-//    @PostMapping("/save")
-//    public String saveBook(@Valid Book book, BindingResult validation){
-//        if(validation.hasErrors()){
-//            return "book/form";
-//        }
-//
-//        bookService.save(book);
-//        return "redirect:/book";
-//    }
 
     @GetMapping("/edit/{id}")
     public String templateEdit(@PathVariable long id, Model model, @AuthenticationPrincipal CurrentUser currentUser){
@@ -112,5 +103,10 @@ public class TemplateController {
     @ModelAttribute("userName")
     public String userName(@AuthenticationPrincipal CurrentUser currentUser) {
         return currentUser.getUser().getUsername();
+    }
+
+    @ModelAttribute("title")
+    public String title() {
+        return "Templates";
     }
 }

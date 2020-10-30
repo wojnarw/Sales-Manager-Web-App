@@ -54,10 +54,10 @@ public class CreationServiceDb implements CreationService {
         return null; //this.creationRepository.findAllWithThisUser(user);
     }
 
-    @Override
-    public List<Creation> findAllWithThisTemplate(Template template) {
-        return null; //this.creationRepository.findAllWithThisTemplate(template);
-    }
+//    @Override
+//    public List<Creation> findAllWithThisTemplate(Template template) {
+//        return this.creationRepository.findAllWithThisTemplate(template);
+//    }
 
     @Override
     public Creation findOneByIdWithAllData(Long id) {
@@ -85,9 +85,9 @@ public class CreationServiceDb implements CreationService {
     }
 
     @Override
-    public List<Creation> getLastFive() {
-        Pageable sortedById = PageRequest.of(0, 5, Sort.by("id").descending());
-        Page<Creation> creationPage = creationRepository.findAll(sortedById);
+    public List<Creation> getLastFive(User user) {
+        Pageable lastFiveSortedByDate = PageRequest.of(0, 5, Sort.by("updatedAt").descending());
+        Page<Creation> creationPage = creationRepository.findAllByUser(user, lastFiveSortedByDate);
         List<Creation> creationList = creationPage.getContent();
         return creationList;
     }

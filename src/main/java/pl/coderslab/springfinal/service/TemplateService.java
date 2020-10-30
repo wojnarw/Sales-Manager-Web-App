@@ -20,7 +20,7 @@ public interface TemplateService {
     public Template findOneByIdWithAllData(Long id);
     public Set<Template> findAllWithAllData();
     int countAllByUserId(long id);
-    List<Template> getLastFive();
+    List<Template> getLastFive(User user);
     Template findOneByIdAndUser(Long id, User user);
 
 }

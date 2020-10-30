@@ -20,17 +20,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @Size(min = 3, max = 255)
-    @NotEmpty(message = "*Please provide a user name")
-    @Length(min = 3, message = "*Your user name must have at least 3 characters")
+    @Size(min = 3, max = 50)
     private String username;
 
-    @NotEmpty(message = "*Please provide your password")
-    @Length(min = 7, message = "*Your password must have at least 7 characters")
+    @NotEmpty
+    @Size(min = 7, max = 50)
     private String password;
 
-    @NotEmpty(message = "*Please provide an email")
-    @Email(message = "*Please provide a valid Email")
+    @NotEmpty
+    @Email
     private String email;
 
     private Boolean enabled;
@@ -48,9 +46,6 @@ public class User {
 
     @Column(columnDefinition = "DATETIME")
     private String registeredOn;
-
-//    @NotNull
-    private String role;
 
     @OneToMany(mappedBy = "user")
     List<Template> templates = new ArrayList<>();

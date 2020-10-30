@@ -85,9 +85,9 @@ public class TemplateServiceDb implements TemplateService {
     }
 
     @Override
-    public List<Template> getLastFive() {
-        Pageable sortedById = PageRequest.of(0, 5, Sort.by("id").descending());
-        Page<Template> templatePage = templateRepository.findAll(sortedById);
+    public List<Template> getLastFive(User user) {
+        Pageable lastFiveSortedByDate = PageRequest.of(0, 5, Sort.by("updatedAt").descending());
+        Page<Template> templatePage = templateRepository.findAllByUser(user, lastFiveSortedByDate);
         List<Template> templateList = templatePage.getContent();
         return templateList;
     }
