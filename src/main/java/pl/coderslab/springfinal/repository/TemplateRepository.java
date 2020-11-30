@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import pl.coderslab.springfinal.entity.Creation;
 import pl.coderslab.springfinal.entity.Template;
 import pl.coderslab.springfinal.entity.User;
 
@@ -24,4 +25,6 @@ public interface TemplateRepository extends JpaRepository<Template, Long> {
     Template findOneByIdAndUser(Long id, User user);
     Page<Template> findAllByUser(User user, Pageable pageable);
 
+    @Query("select t from Template t left join fetch t.creations c where c.id = :id")
+    List<Template> findAllByCreationId(Long id);
 }

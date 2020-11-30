@@ -17,9 +17,9 @@ import java.util.Set;
 @Repository
 public interface CreationRepository extends JpaRepository<Creation,Long> {
     Creation findByName(String name);
-    @Query("select c from Creation c join fetch c.user u") //  join fetch t.publications p")
+    @Query("select c from Creation c join fetch c.user u")
     Set<Creation> findAllWithAllData();
-    @Query("select c from Creation c left join fetch c.user left join fetch c.inputFields where c.id = :id") //  join fetch t.publications p")
+    @Query("select c from Creation c left join fetch c.user left join fetch c.inputFields where c.id = :id")
     Creation findOneByIdWithAllData(@Param("id") Long id);
     int countAllByUserId(Long id);
     //List<Creation> findAllWithThisTemplate(Template template);

@@ -40,12 +40,12 @@
                     <td>${creation.description}</td>
                     <td>${creation.createdAt}</td>
                     <td>
-                        <a href="<c:url value="/app/creations/edit/${template.id}" />" class="btn btn-info btn-icon-split">
+                        <a href="<c:url value="/app/creations/edit/${creation.id}" />" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50"><i class="fas fa-flag"></i></span>
                             <span class="text text-white">Edit</span>
                         </a>
 
-                        <a href="<c:url value="/app/creations/delete/${template.id}" />" class="btn btn-danger btn-icon-split">
+                        <a href="<c:url value="/app/creations/delete/${creation.id}" />" class="btn btn-danger btn-icon-split">
                             <span class="icon text-white-50"><i class="fas fa-trash"></i></span>
                             <span class="text text-white">Delete</span>
                         </a>

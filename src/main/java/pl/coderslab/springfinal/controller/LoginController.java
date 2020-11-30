@@ -37,17 +37,17 @@ public class LoginController {
     @PostMapping("/register")
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        User userExists = userService.findByUserName(user.getUsername());
+        User userExists = this.userService.findByUserName(user.getUsername());
         if (userExists != null) {
-            bindingResult.rejectValue("userName", "error.user",
+            bindingResult.rejectValue("username", "error.user",
                             "There is already a user registered with the user name provided");
         }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("register");
         } else {
             user.setRegisteredOn(String.valueOf(LocalDateTime.now()));
-            userService.save(user);
-            modelAndView.addObject("successMessage", "User has been registered successfully");
+            this.userService.save(user);
+            modelAndView.addObject("successMessage", "User has been registered successfully!");
             modelAndView.addObject("user", new User());
             modelAndView.setViewName("register");
 

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface TemplateService {
-    public void save(Template template);
+    public Template save(Template template);
     public void delete (Template template);
     public Template findOneById(Long id);
     public Template findOneByName(String name);
@@ -23,4 +23,5 @@ public interface TemplateService {
     List<Template> getLastFive(User user);
     Template findOneByIdAndUser(Long id, User user);
 
+    List<Template> findAllByCreationId(Long id);
 }

@@ -21,17 +21,17 @@
         </div>
         <div>
             <form:label path="password" cssClass="w-25 text-right">New password: </form:label>
-            <form:password path="password" cssClass="w-25" autocomplete="false"/>
+            <form:password path="password" cssClass="w-25"/>
             <form:errors path="password" cssClass="text-danger" />
         </div>
         <div>
-            <label for="rePassword" class="w-25 text-right">Retype password: </label>
-            <input type="password" id="rePassword" class="w-25" autocomplete="false"/>
+            <label for="repeatPassword" class="w-25 text-right">Retype password: </label>
+            <input type="password" id="repeatPassword" class="w-25" autocomplete="new-password"/>
             <span id="passwordValidity" class="text-danger"></span>
         </div>
         <div>
             <label for="formSubmit" class="w-25 text-right">&nbsp;</label>
-            <input type="submit" id="formSubmit"class="w-25 btn btn-info" value="Save" disabled="true"/>
+            <input type="submit" id="formSubmit" class="w-25 btn btn-info" value="Save" disabled="true"/>
         </div>
 
     </form:form>
@@ -40,22 +40,7 @@
         <p>${result}</p>
     </c:if>
 
-    <script>
-        let passwordEl = document.getElementById("password");
-        let rePasswordEl = document.getElementById("rePassword");
-        let errorEl = document.getElementById("passwordValidity");
 
-        const validatePassword = function (event) {
-            if(passwordEl.value !== rePasswordEl.value) {
-                errorEl.innerText = "Passwords don't match!";
-                document.getElementById("formSubmit").setAttribute("disabled", "true");
-            }
-            else {
-                errorEl.innerText = "";
-                document.getElementById("formSubmit").removeAttribute("disabled");
-            }
-        }
-        rePasswordEl.addEventListener("keyup", validatePassword);
-    </script>
+<script src="${pageContext.request.contextPath}/js/ValidatePasswords.js"></script>
 
 <jsp:include page="/WEB-INF/fragments/footer.jsp" />

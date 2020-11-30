@@ -1,10 +1,9 @@
 package pl.coderslab.springfinal.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -15,6 +14,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "templates")
 public class Template {
     @Id
@@ -22,7 +23,7 @@ public class Template {
     private Long id;
 
     @Size(min = 2, max = 255)
-    @NotEmpty
+    @NotBlank
     private String name;
 
     @Column(columnDefinition = "DATETIME")

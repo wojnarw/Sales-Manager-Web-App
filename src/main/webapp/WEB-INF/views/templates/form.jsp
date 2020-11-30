@@ -27,7 +27,6 @@
     </form:form>
 
     <script type="text/javascript">
-        console.log("script loaded");
         window.addEventListener("DOMContentLoaded", function () {
             console.log("event fired");
             let currentTime = new Date().toISOString().slice(0, 19).replace('T', ' ');;

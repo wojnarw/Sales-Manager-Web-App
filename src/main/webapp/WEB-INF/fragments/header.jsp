@@ -45,7 +45,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
-                <h1 class="m-4 text-gray-300 m-0 font-weight-bold">${title}</h1>
+                <h1 id="sectionTitle" class="m-4 text-white m-0 font-weight-bold my-shadow">${title}</h1>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">

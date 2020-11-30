@@ -74,11 +74,14 @@ public class CreationController {
 
     @GetMapping("/edit/{id}")
     public String creationEdit(@PathVariable long id, Model model, @AuthenticationPrincipal CurrentUser currentUser){
-        Creation creation = creationService.findOneByIdAndUser(id, currentUser.getUser());
+        Creation creation = this.creationService.findOneByIdAndUser(id, currentUser.getUser());
         if(creation == null) return "errors/404";
         model.addAttribute("creation", creation);
         List<InputFields> inputFields = creation.getInputFields();
         model.addAttribute("inputFields", inputFields);
+
+        List<Template> creationTemplates = this.templateService.findAllByCreationId(creation.getId());
+        model.addAttribute("creationTemplates", creationTemplates);
         return "creation/form";
     }
 
@@ -98,19 +101,30 @@ public class CreationController {
 
     @GetMapping("/delete/{id}")
     public String deleteCreationConfirm(@PathVariable long id, Model model, @AuthenticationPrincipal CurrentUser currentUser){
-        Creation creation = creationService.findOneByIdAndUser(id, currentUser.getUser());
+        Creation creation = this.creationService.findOneByIdAndUser(id, currentUser.getUser());
         if(creation == null) return "errors/404";
         model.addAttribute("creation", creation);
         model.addAttribute("delete", true);
         return "creation/details";
     }
+
     @PostMapping("/delete/{id}")
     public String deleteCreation(@PathVariable long id, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
-        Creation creation = creationService.findOneByIdAndUser(id, currentUser.getUser());
+        Creation creation = this.creationService.findOneByIdAndUser(id, currentUser.getUser());
         if(creation == null) return "errors/404";
         creationService.delete(creation);
         return "redirect:/app/creation?del=" + creation.getName();
     }
+
+    @PostMapping("{id}/templates/save")
+    public String saveCreationTemplates(List<Template> creationTemplates, @PathVariable Long id, Model model) {
+        Creation creation = this.creationService.findOneById(id);
+        if(creation == null) return "errors/404";
+
+        return "redirect:/app/creations/" + id;
+    }
+
+
 
     @ModelAttribute("allTemplates")
     public List<Template> templateList(@AuthenticationPrincipal CurrentUser currentUser) {

@@ -27,11 +27,22 @@ table.entityList td {
 }
 #templatesTable {
     border: 1px solid #ccc;
-    padding: 30px 20px;
+    padding: 30px 20px !important;
     margin:20px;
 }
 #templatesTable td {
     padding: 0 15px;
+    margin: 0;
+}
+#templatesTable tr {
+    padding: 0 15px;
+    margin: 0;
+}
+#templatesTable textarea {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+
 }
 .templateControls {
     padding: 0 !important;
@@ -43,12 +54,18 @@ table.entityList td {
 }
 .field-name {
     font-weight: bold;
+    margin: 0 10px;
 }
 .w-20 {
     width: 20% !important;
 }
 .bg-my-login-image {
     background:url(../img/back.jpg);
+    background-position:center;
+    background-size:cover;
+}
+.bg-my-register-image {
+    background:url(../img/harold.jpg);
     background-position:center;
     background-size:cover;
 }
@@ -60,4 +77,15 @@ a.text-primary:focus,a.text-primary:hover{
 }
 a {
     color:#36b9cc;
+}
+#templatesTable td {
+    margin: 0 5px !important;
+    padding: 0 5px !important;
+}
+.my-shadow {
+    text-shadow: 10px 30px 6px #000000 !important;
+    /*text-shadow: 0px 0px 40px #034045 !important;*/
+}
+#sectionTitle {
+    margin-top: -35px !important;
 }

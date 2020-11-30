@@ -28,8 +28,8 @@ public class TemplateServiceDb implements TemplateService {
     }
 
     @Override
-    public void save(Template template) {
-        templateRepository.save(template);
+    public Template save(Template template) {
+        return templateRepository.save(template);
     }
 
     @Override
@@ -95,5 +95,10 @@ public class TemplateServiceDb implements TemplateService {
     @Override
     public Template findOneByIdAndUser(Long id, User user) {
         return this.templateRepository.findOneByIdAndUser(id, user);
+    }
+
+    @Override
+    public List<Template> findAllByCreationId(Long id) {
+        return this.templateRepository.findAllByCreationId(id);
     }
 }

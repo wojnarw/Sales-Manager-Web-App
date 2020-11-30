@@ -54,4 +54,5 @@ public class UserController {
         //has role ADMIN?
         return auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"));
     }
+
 }

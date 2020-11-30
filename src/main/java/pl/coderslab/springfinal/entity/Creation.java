@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class Creation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotBlank
     private String name;
 
     private String description;
@@ -55,11 +56,6 @@ public class Creation {
                 ", description='" + description + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", updatedAt='" + updatedAt + '\'' +
-//                ", jsonFields='" + jsonFields + '\'' +
-//                ", content='" + content + '\'' +
-//                ", user=" + user +
-//                ", inputFields=" + inputFields +
-//                ", templates=" + templates +
                 '}';
     }
 }

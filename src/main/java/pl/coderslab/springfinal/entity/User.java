@@ -1,10 +1,12 @@
 package pl.coderslab.springfinal.entity;
 
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -20,15 +22,19 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
     @Size(min = 3, max = 50)
+    @Column(unique = true)
     private String username;
 
     @NotEmpty
-    @Size(min = 7, max = 50)
+    @Size(min = 5, max = 70)
     private String password;
 
-    @NotEmpty
+    @NotBlank
     @Email
+    @Column(unique = true)
     private String email;
 
     private Boolean enabled;
@@ -58,6 +64,7 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
+                ", enabled=" + enabled + '\'' +
                 '}';
     }
 }

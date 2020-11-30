@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 
 </head>
@@ -48,6 +49,13 @@
                                     <div class="form-group">
                                         <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                                     </div>
+
+                                    <c:if test="${param.error}">
+                                    <div align="center">
+                                        <p class="text-danger">User Name or Password invalid, please verify</p>
+                                    </div>
+                                    </c:if>
+
                                     <input type="submit" value="Sign in" class="btn btn-primary btn-user btn-block">
                                 </form>
                                 <hr>

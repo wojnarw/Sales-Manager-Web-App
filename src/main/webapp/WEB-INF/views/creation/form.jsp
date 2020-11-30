@@ -19,6 +19,8 @@
         <form:label path="description" class="field-name">Creation description: </form:label>
         <form:input path="description" />
         <form:errors path="description"/>
+
+        <button type="submit" class="btn btn-primary text text-white d-inline">Save creation</button>
         <br />
 
         <div id="dataFields">
@@ -29,8 +31,8 @@
             <hr>
         <c:forEach items="${creation.inputFields}" var="field" varStatus="status">
             <label for="${field.value}" class="field-name">${field.name}</label>
-            <input type="hidden" id="${field.name}_${status.index}" value="${field.name}" name="fieldList${[status.index]}.key" path="creation.inputFields"><br />
-            <input type="text" id="${field.value}_${status.index}" value="${field.value}" name="fieldList${[status.index]}.value" path="creation.inputFields"><br />
+            <input type="hidden" id="${field.name}_${status.index}" value="${field.name}" name="fieldList${[status.index]}.key" path="creation.inputFields">
+            <input type="text" id="${field.value}_${status.index}" value="${field.value}" name="fieldList${[status.index]}.value" path="creation.inputFields">
         </c:forEach>
             <hr>
 <%--        <c:forEach items="${inputFields}" var="field">--%>
@@ -47,23 +49,25 @@
 <%--        </form:form>--%>
         </div>
 
-        <button type="submit">Save</button>
     </div>
 
+</form:form>
+
+<form:form method="post" action="${pageContext.request.contextPath}/app/creations/${creation.id}/templates/save" modelAttribute="creationTemplates">
     <table id="templatesTable">
-        <tbody>
-            <c:forEach items="${creation.templates}" var="template" varStatus="status">
-            <tr>
+        <tbody id="templatesBody">
+            <c:forEach items="${creationTemplates}" var="template" varStatus="status">
+            <tr id="templateRow${status.index}">
                 <td>
                     <span class="field-name"> </span><span>${template.name}</span>
                 </td>
                 <td class="templateControls">
-                    <c:if test="${not status.first}">
-                        <button>↑</button>
-                    </c:if>
-                    <c:if test="${not status.last}">
-                        <button>↓</button>
-                    </c:if>
+<%--                    <c:if test="${not status.first}">--%>
+                        <button class="btn btn-facebook btn-icon-split p-1" type="button" id="moveUp${status.index}" onclick="const e = $(this).parent().parent();e.prev().insertAfter(e);">↑</button>
+<%--                    </c:if>--%>
+<%--                    <c:if test="${not status.last}">--%>
+                        <button class="btn btn-facebook btn-icon-split p-1" type="button" id="moveDown${status.index}" onclick="const e = $(this).parent().parent();e.next().insertBefore(e);">↓</button>
+<%--                    </c:if>--%>
                 </td>
                 <td>
                     <textarea class="template-content" cols="80" oninput="auto_grow(this);" onkeyup="update_fields(this);">${template.content}</textarea>
@@ -79,8 +83,14 @@
                 </td>
             </tr>
             <c:if test="${status.last}">
+        </tbody>
+        <tfoot>
                 <tr>
-                    <td colspan="3">
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td colspan="2">
                         <select>
                             <option value="-1">Select template</option>
                             <c:forEach items="${allTemplates}" var="template">
@@ -88,16 +98,18 @@
                             </c:forEach>
 <%--                            <form:options value="" itemLabel="name" itemValue="id" />--%>
                         </select>
-                        <button>Add template</button>
+                        <button class="btn btn-primary text text-white">Add template</button>
                     </td>
                 </tr>
             </c:if>
             </c:forEach>
-        </tbody>
+        </tfoot>
     </table>
+    <button type="submit" class="btn btn-primary text text-white text-right">Save assigned templates</button>
 </form:form>
 
 <script>
+
     //set last updated datetime
     window.addEventListener("DOMContentLoaded", function () {
         console.log("event fired");
@@ -112,7 +124,7 @@
         // console.log("update_fields");
         // console.log(element.value);
 
-        const matches = element.value.match(/(?:\{([\w]+)\})/g);
+        const matches = element.value.match(/(?:\{([\w ]+)\})/g);
         console.log("matches below:")
         console.log(matches);
 

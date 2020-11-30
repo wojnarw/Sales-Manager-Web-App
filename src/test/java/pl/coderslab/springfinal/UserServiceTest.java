@@ -27,23 +27,25 @@ public class UserServiceTest {
 
     private UserService userServiceUnderTest;
     private User user;
+    private User userFromDatabase;
 
     @Before
     public void setUp() {
         initMocks(this);
-        userServiceUnderTest = new UserServiceDb(mockUserRepository,
-                mockRoleRepository,
-                mockBCryptPasswordEncoder);
+        userServiceUnderTest = new UserServiceDb(mockUserRepository, mockRoleRepository, mockBCryptPasswordEncoder);
+
         user = User.builder()
                 .id(1L)
-                .username("Gustavo")
+                .username("testUser")
+                .password("1234567")
                 .email("test@test.com")
                 .build();
 
-        Mockito.when(mockUserRepository.save(any()))
-                .thenReturn(user);
-        Mockito.when(mockUserRepository.findByEmail(anyString()))
-                .thenReturn(user);
+        userFromDatabase = userServiceUnderTest.save(user);
+
+        Mockito.when(mockUserRepository.save(any())).thenReturn(user);
+        Mockito.when(mockUserRepository.findByEmail(anyString())).thenReturn(user);
+        Mockito.when(mockUserRepository.findByUsername(anyString())).thenReturn(user);
     }
 
     @Test
@@ -59,6 +61,19 @@ public class UserServiceTest {
     }
 
     @Test
+    public void testFindUserByUsername() {
+        // Setup
+        final String username = "testUser";
+
+        // Run the test
+        final User result = userServiceUnderTest.findByUserName(username);
+
+        // Verify the results
+        assertEquals(username, result.getUsername());
+    }
+
+
+    @Test
     public void testSaveUser() {
         // Setup
         final String email = "test@test.com";
@@ -68,5 +83,18 @@ public class UserServiceTest {
 
         // Verify the results
         assertEquals(email, result.getEmail());
+    }
+
+    @Test
+    public void testToggleEnabled() {
+        // Setup
+        final Boolean defaultEnabled = true;
+        final User user = userServiceUnderTest.save(User.builder().build());
+
+        // Run the test
+        Boolean result = user.getEnabled();
+
+        // Verify the results
+        assertEquals(defaultEnabled, result);
     }
 }
