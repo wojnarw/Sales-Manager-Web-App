@@ -39,7 +39,7 @@
                     </td>
                     <td>${creation.description}</td>
                     <td>${creation.createdAt}</td>
-                    <td>
+                    <td class="p-1 pl-3">
                         <a href="<c:url value="/app/creations/edit/${creation.id}" />" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50"><i class="fas fa-flag"></i></span>
                             <span class="text text-white">Edit</span>

@@ -6,7 +6,7 @@
 <div class="card shadow mb-4">
 
     <div class="card-header py-3">
-        <h2 class="m-0 font-weight-bold text-info">
+        <h2 class="m-0 font-weight-bold text-gray-700">
             User list
         </h2>
     </div>

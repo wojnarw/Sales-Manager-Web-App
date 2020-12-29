@@ -39,7 +39,7 @@
                         </td>
                         <td>${template.description}</td>
                         <td>${template.createdAt}</td>
-                        <td>
+                        <td class="p-1 pl-3">
                             <a href="${pageContext.request.contextPath}/app/templates/edit/${template.id}" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50"><i class="fas fa-flag"></i></span>
                             <span class="text text-white">Edit</span>

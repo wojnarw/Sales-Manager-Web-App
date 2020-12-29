@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/fragments/header.jsp" />
 
     <h3 class="m-4">User
-        <a href="${pageContext.request.contextPath}/admin/user/ban/${user.id}" class="btn btn-danger btn-icon-split">
+        <a href="${pageContext.request.contextPath}/admin/user/ban/${user.id}" class="btn btn-danger btn-icon-split ml-2">
             <span class="icon text-white-50"><i class="fas fa-trash"></i></span>
             <span class="text text-white">
                 <c:if test="${user.enabled}">
@@ -27,25 +27,25 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Username</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">${user.username}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 pb-2">${user.username}</div>
                         </div>
                     </div>
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">E-mail</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">${user.email}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 pb-2">${user.email}</div>
                         </div>
                     </div>
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Registered</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">${user.registeredOn}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 pb-2">${user.registeredOn}</div>
                         </div>
                     </div>
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Enabled</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span <c:if test="${not user.enabled}">class="banned"</c:if>>${user.enabled}</span></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 pb-2"><span <c:if test="${not user.enabled}">class="banned"</c:if>>${user.enabled}</span></div>
                         </div>
                     </div>
                 </div>

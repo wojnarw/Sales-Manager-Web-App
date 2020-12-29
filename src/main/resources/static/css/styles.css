@@ -83,9 +83,16 @@ a {
     padding: 0 5px !important;
 }
 .my-shadow {
-    text-shadow: 10px 30px 6px #000000 !important;
+    /*text-shadow: 10px 30px 6px #000000 !important;*/
     /*text-shadow: 0px 0px 40px #034045 !important;*/
+    /*text-shadow: 5px 5px 6px #aaa !important;*/
+    text-shadow: 0 0 8px #777 !important;
 }
 #sectionTitle {
-    margin-top: -35px !important;
+    /*margin-top: -35px !important;*/
+    color: #fff !important;
+}
+.flex-header {
+    display: flex;
+    align-items: center;
 }

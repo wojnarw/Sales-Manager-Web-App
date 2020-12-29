@@ -5,21 +5,20 @@
 
 <div class="card shadow mb-4 mt-4">
 
-    <div class="card-header py-3">
-        <h2 class="m-0 font-weight-bold text-gray-700">Last templates
-            <a href="${pageContext.request.contextPath}/app/templates/add" class="btn btn-success btn-icon-split">
+    <div class="card-header py-3 flex-header">
+        <h4 class="m-0 font-weight-bold text-gray-700">Last templates</h4>
+        <a href="${pageContext.request.contextPath}/app/templates/add" class="btn btn-success btn-icon-split ml-3">
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>
                     </span>
-                <span class="text text-white">Add new</span>
-            </a>
-            <a href="${pageContext.request.contextPath}/app/templates" class="btn btn-info btn-icon-split">
+            <span class="text text-white">Add new</span>
+        </a>
+        <a href="${pageContext.request.contextPath}/app/templates" class="btn btn-info btn-icon-split ml-1">
                     <span class="icon text-white-50">
                       <i class="fas fa-list"></i>
                     </span>
-                <span class="text text-white">Show all</span>
-            </a>
-        </h2>
+            <span class="text text-white">Show all</span>
+        </a>
     </div>
 
     <div class="card-body">
@@ -52,7 +51,7 @@
                     <td>
                             ${template.updatedAt}
                     </td>
-                    <td>
+                    <td class="p-1 pl-3">
                         <a href="${pageContext.request.contextPath}/app/templates/edit/${template.id}" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50"><i class="fas fa-flag"></i></span>
                             <span class="text text-white">Edit</span>
@@ -69,21 +68,20 @@
         </table>
     </div>
 
-    <div class="card-header py-3">
-        <h2 class="m-0 font-weight-bold text-gray-700">Last creations
-            <a href="${pageContext.request.contextPath}/app/creations/add" class="btn btn-success btn-icon-split">
+    <div class="card-header py-3 flex-header">
+        <h4 class="m-0 font-weight-bold text-gray-700">Last creations</h4>
+        <a href="${pageContext.request.contextPath}/app/creations/add" class="btn btn-success btn-icon-split ml-3">
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>
                     </span>
-                <span class="text text-white">Add new</span>
-            </a>
-            <a href="${pageContext.request.contextPath}/app/creations" class="btn btn-info btn-icon-split">
+            <span class="text text-white">Add new</span>
+        </a>
+        <a href="${pageContext.request.contextPath}/app/creations" class="btn btn-info btn-icon-split ml-1">
                     <span class="icon text-white-50">
                       <i class="fas fa-list"></i>
                     </span>
-                <span class="text text-white">Show all</span>
-            </a>
-        </h2>
+            <span class="text text-white">Show all</span>
+        </a>
     </div>
 
 
@@ -117,7 +115,7 @@
                     <td>
                             ${creation.updatedAt}
                     </td>
-                    <td>
+                    <td class="p-1 pl-3">
                         <a href="${pageContext.request.contextPath}/app/creations/edit/${template.id}" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50"><i class="fas fa-flag"></i></span>
                             <span class="text text-white">Edit</span>

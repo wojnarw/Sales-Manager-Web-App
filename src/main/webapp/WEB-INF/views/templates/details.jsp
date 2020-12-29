@@ -17,7 +17,7 @@
     </c:if>
     <c:if test="${empty delete}">
         <h3 class="m-4">Details
-            <a href="${pageContext.request.contextPath}/app/templates/delete/${template.id}" class="btn btn-danger btn-icon-split">
+            <a href="${pageContext.request.contextPath}/app/templates/delete/${template.id}" class="btn btn-danger btn-icon-split ml-2">
             <span class="icon text-white-50"><i class="fas fa-trash"></i></span>
             <span class="text text-white">Delete</span>
             </a>
