@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import pl.coderslab.springfinal.service.MyUserDetailsService;
-import pl.coderslab.springfinal.service.SpringDataUserDetailsService;
 
 import javax.sql.DataSource;
 
@@ -55,46 +54,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
             .logoutSuccessUrl("/login").and().exceptionHandling()
             .accessDeniedPage("/403");
-
-//        http.authorizeRequests()
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/app","/app/**").hasAnyRole("USER", "ADMIN")
-//                .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
-//                .and().formLogin()
-////                .loginPage("/login")
-//                .and().logout().logoutSuccessUrl("/")
-//                .and().exceptionHandling().accessDeniedPage("/403");
-
     }
-
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//
-//        http.
-//                authorizeRequests()
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/login").permitAll()
-//                .antMatchers("/registration").permitAll()
-//                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
-//                .authenticated().and().csrf().disable().formLogin()
-//                .loginPage("/login").failureUrl("/login?error=true")
-//                .defaultSuccessUrl("/admin/home")
-//                .usernameParameter("user_name")
-//                .passwordParameter("password")
-//                .and().logout()
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                .logoutSuccessUrl("/login").and().exceptionHandling()
-//                .accessDeniedPage("/access-denied");
-//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public SpringDataUserDetailsService customUserDetailsService() {
-        return new SpringDataUserDetailsService();
     }
 
     @Bean

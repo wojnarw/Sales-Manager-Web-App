@@ -41,6 +41,6 @@
     </c:if>
 
 
-<script src="${pageContext.request.contextPath}/js/ValidatePasswords.js"></script>
+<script src="${pageContext.request.contextPath}/js/validate-passwords.js"></script>
 
 <jsp:include page="/WEB-INF/fragments/footer.jsp" />

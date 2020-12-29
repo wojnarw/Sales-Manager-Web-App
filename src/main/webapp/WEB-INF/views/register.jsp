@@ -114,7 +114,7 @@
                                 <span id="passwordValidity" class="text-danger ml-4"></span>
                                 <form:errors path="password" cssClass="text-danger ml-4"/>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-user btn-block" id="formSubmit" disabled="true">Register Account</button>
+                            <button type="submit" class="btn btn-primary btn-user btn-block" id="formSubmit" disabled>Register Account</button>
                         </form:form>
 
                         <c:if test="${not empty successMessage}">
@@ -144,7 +144,7 @@
 
 </div>
 
-<script src="${pageContext.request.contextPath}/js/ValidatePasswords.js"></script>
+<script src="${pageContext.request.contextPath}/js/validate-passwords.js"></script>
 
 <!-- Bootstrap core JavaScript-->
 <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
